@@ -6,6 +6,7 @@ import 'package:flutter_praktek_dokter/screens/auth/register.dart';
 import 'package:flutter_praktek_dokter/screens/protected/patient/register_patient.dart';
 import 'package:flutter_praktek_dokter/screens/protected/patient/table_data_patient.dart';
 import 'package:flutter_praktek_dokter/screens/protected/dashboard/dashboard_screen.dart';
+import 'package:flutter_praktek_dokter/screens/protected/signin_signout/signin_signout.dart';
 import 'package:get/get.dart';
 
 final AuthHelper _isUserLogin = Get.put(AuthHelper());
@@ -28,9 +29,9 @@ class Routes {
       page: () {
         return CustomRoutes(
           widget: DashboardScreen(),
-          secondWidget: AuthScreen(
+          secondWidget: const AuthScreen(
             title: 'Register Screen',
-            child: RegisterScreen(),
+            child: SigninSignout(),
           ),
         );
       },
