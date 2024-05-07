@@ -29,7 +29,7 @@ class Routes {
       page: () {
         return CustomRoutes(
           widget: DashboardScreen(),
-          secondWidget: const AuthScreen(
+          secondWidget: AuthScreen(
             title: 'Register Screen',
             child: SigninSignout(),
           ),

@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.flutter_praktek_dokter"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -65,4 +65,11 @@ flutter {
     source '../..'
 }
 
-dependencies { implementation 'androidx.multidex:multidex:2.0.1'}
+dependencies { implementation 'androidx.multidex:multidex:2.0.1'
+implementation "androidx.activity:activity:1.6.0-alpha05"}
+task wrapper(type: Wrapper){
+    gradleVersion = '7.2'
+}
+task prepareKotlinBuildScriptModel {
+
+}

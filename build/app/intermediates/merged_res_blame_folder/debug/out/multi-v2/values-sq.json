@@ -23,23 +23,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\asuna\\.gradle\\caches\\transforms-3\\181f66008f2fbaa828ce0db2fa6ce196\\transformed\\core-1.8.0\\res\\values-sq\\values-sq.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "113",
-                        "startColumns": "4",
-                        "startOffsets": "10464",
-                        "endColumns": "100",
-                        "endOffsets": "10560"
-                    }
-                },
-                {
                     "source": "C:\\Users\\asuna\\.gradle\\caches\\transforms-3\\55b4e390742817dc4b9653e42d791034\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-sq\\values.xml",
                     "from": {
                         "startLines": "4",
@@ -91,7 +74,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\asuna\\.gradle\\caches\\transforms-3\\680a2964d8a0bce7cbd43c0f88e0420c\\transformed\\jetified-play-services-base-18.0.1\\res\\values-sq\\values.xml",
+                    "source": "C:\\Users\\asuna\\.gradle\\caches\\transforms-3\\e0a8793a7a85d6e071b7a743c9adf075\\transformed\\jetified-play-services-base-18.1.0\\res\\values-sq\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -105,6 +88,23 @@
                         "startOffsets": "3409,3516,3689,3826,3933,4094,4228,4354,4599,4769,4877,5052,5190,5352,5536,5601,5668",
                         "endColumns": "106,172,136,106,160,133,125,115,169,107,174,137,161,183,64,66,81",
                         "endOffsets": "3511,3684,3821,3928,4089,4223,4349,4465,4764,4872,5047,5185,5347,5531,5596,5663,5745"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\asuna\\.gradle\\caches\\transforms-3\\d9a7bda5b0a0d2fc08828ff145bfcb70\\transformed\\core-1.9.0\\res\\values-sq\\values-sq.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "113",
+                        "startColumns": "4",
+                        "startOffsets": "10464",
+                        "endColumns": "100",
+                        "endOffsets": "10560"
                     }
                 }
             ]

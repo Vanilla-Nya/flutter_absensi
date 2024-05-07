@@ -104,6 +104,7 @@ androidx/core/app/NotificationCompat$StreamType.class
 androidx/core/app/RemoteInput$EditChoicesBeforeSending.class
 androidx/core/app/RemoteInput$Source.class
 androidx/core/app/ServiceCompat$StopForegroundFlags.class
+androidx/core/content/ContextCompat$RegisterReceiverFlags.class
 androidx/core/content/PackageManagerCompat$UnusedAppRestrictionsStatus.class
 androidx/core/content/PermissionChecker$PermissionResult.class
 androidx/core/content/pm/PermissionInfoCompat$Protection.class
@@ -173,6 +174,7 @@ androidx/window/core/ExperimentalWindowApi.class
 androidx/window/embedding/SplitRule$LayoutDir.class
 com/google/android/gms/auth/api/phone/SmsCodeAutofillClient$PermissionState.class
 com/google/android/gms/common/GmsSignatureVerifier.class
+com/google/android/gms/common/GoogleApiAvailability.class
 com/google/android/gms/common/GoogleSignatureVerifier.class
 com/google/android/gms/common/PackageSignatureVerifier.class
 com/google/android/gms/common/SignInButton$ButtonSize.class
@@ -184,7 +186,12 @@ com/google/android/gms/common/annotation/KeepName.class
 com/google/android/gms/common/annotation/NonNullApi.class
 com/google/android/gms/common/internal/HideFirstParty.class
 com/google/android/gms/common/internal/ShowFirstParty.class
+com/google/android/gms/common/internal/TelemetryLoggingClient.class
+com/google/android/gms/common/moduleinstall/ModuleAvailabilityResponse$AvailabilityStatus.class
+com/google/android/gms/common/moduleinstall/ModuleInstallStatusUpdate$InstallState.class
 com/google/android/gms/common/util/DynamiteApi.class
+com/google/android/gms/internal/base/zad.class
+com/google/android/gms/internal/base/zae.class
 com/google/android/gms/internal/common/zzac.class
 com/google/android/gms/internal/common/zzag.class
 com/google/android/gms/internal/common/zzah.class
@@ -200,6 +207,9 @@ com/google/android/gms/internal/common/zzs.class
 com/google/android/gms/internal/common/zzx.class
 com/google/android/gms/internal/common/zzy.class
 com/google/android/gms/internal/common/zzz.class
+com/google/android/gms/location/ActivityTransition$SupportedActivityTransition.class
+com/google/android/gms/location/Granularity.class
+com/google/android/gms/location/Priority.class
 com/google/android/material/appbar/AppBarLayout$LayoutParams$ScrollFlags.class
 com/google/android/material/appbar/CollapsingToolbarLayout$TitleCollapseMode.class
 com/google/android/material/badge/BadgeDrawable$BadgeGravity.class

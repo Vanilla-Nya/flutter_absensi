@@ -4,23 +4,6 @@
             "outputFile": "com.example.flutter_praktek_dokter.app-mergeDebugResources-35:/values-lt/values-lt.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\asuna\\.gradle\\caches\\transforms-3\\680a2964d8a0bce7cbd43c0f88e0420c\\transformed\\jetified-play-services-base-18.0.1\\res\\values-lt\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "193,296,444,572,675,824,950,1065,1167,1329,1434,1595,1725,1874,2020,2084,2146",
-                        "endColumns": "102,147,127,102,148,125,114,101,161,104,160,129,148,145,63,61,85",
-                        "endOffsets": "295,443,571,674,823,949,1064,1166,1328,1433,1594,1724,1873,2019,2083,2145,2231"
-                    },
-                    "to": {
-                        "startLines": "39,40,41,42,43,44,45,46,48,49,50,51,52,53,54,55,56",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "3575,3682,3834,3966,4073,4226,4356,4475,4740,4906,5015,5180,5314,5467,5617,5685,5751",
-                        "endColumns": "106,151,131,106,152,129,118,105,165,108,164,133,152,149,67,65,89",
-                        "endOffsets": "3677,3829,3961,4068,4221,4351,4470,4576,4901,5010,5175,5309,5462,5612,5680,5746,5836"
-                    }
-                },
-                {
                     "source": "C:\\Users\\asuna\\.gradle\\caches\\transforms-3\\76530493fbcc90d5790e6231cb81967e\\transformed\\material-1.7.0\\res\\values-lt\\values-lt.xml",
                     "from": {
                         "startLines": "2,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64",
@@ -57,20 +40,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\asuna\\.gradle\\caches\\transforms-3\\181f66008f2fbaa828ce0db2fa6ce196\\transformed\\core-1.8.0\\res\\values-lt\\values-lt.xml",
+                    "source": "C:\\Users\\asuna\\.gradle\\caches\\transforms-3\\e0a8793a7a85d6e071b7a743c9adf075\\transformed\\jetified-play-services-base-18.1.0\\res\\values-lt\\values.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "193,296,444,572,675,824,950,1065,1167,1329,1434,1595,1725,1874,2020,2084,2146",
+                        "endColumns": "102,147,127,102,148,125,114,101,161,104,160,129,148,145,63,61,85",
+                        "endOffsets": "295,443,571,674,823,949,1064,1166,1328,1433,1594,1724,1873,2019,2083,2145,2231"
                     },
                     "to": {
-                        "startLines": "115",
-                        "startColumns": "4",
-                        "startOffsets": "10619",
-                        "endColumns": "100",
-                        "endOffsets": "10715"
+                        "startLines": "39,40,41,42,43,44,45,46,48,49,50,51,52,53,54,55,56",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3575,3682,3834,3966,4073,4226,4356,4475,4740,4906,5015,5180,5314,5467,5617,5685,5751",
+                        "endColumns": "106,151,131,106,152,129,118,105,165,108,164,133,152,149,67,65,89",
+                        "endOffsets": "3677,3829,3961,4068,4221,4351,4470,4576,4901,5010,5175,5309,5462,5612,5680,5746,5836"
                     }
                 },
                 {
@@ -105,6 +88,23 @@
                         "startOffsets": "5841,6111,6216,6330",
                         "endColumns": "104,104,113,105",
                         "endOffsets": "5941,6211,6325,6431"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\asuna\\.gradle\\caches\\transforms-3\\d9a7bda5b0a0d2fc08828ff145bfcb70\\transformed\\core-1.9.0\\res\\values-lt\\values-lt.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "115",
+                        "startColumns": "4",
+                        "startOffsets": "10619",
+                        "endColumns": "100",
+                        "endOffsets": "10715"
                     }
                 }
             ]

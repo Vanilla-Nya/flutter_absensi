@@ -11,6 +11,7 @@ class CustomTextFormField extends StatelessWidget {
     this.keyboardType,
     this.obscureText,
     this.readOnly,
+    this.maxlines,
     this.icon,
     this.suffixIcon,
     this.errorMessage,
@@ -43,6 +44,9 @@ class CustomTextFormField extends StatelessWidget {
 
   // Is Text Form Field Read Only ?
   final bool? readOnly;
+
+  // If Need more then one line
+  final int? maxlines;
 
 // Icon Properties
 
@@ -110,6 +114,7 @@ class CustomTextFormField extends StatelessWidget {
           // If Obscure Text is Empty or Null Set Obscure Text to False
           obscureText: obscureText ?? false,
           readOnly: readOnly ?? false,
+          maxLines: maxlines ?? 1,
           decoration: InputDecoration(
             // if Icon is Empty Then Null
             prefixIcon: icon != null
