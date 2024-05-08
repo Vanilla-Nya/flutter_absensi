@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_praktek_dokter/helpers/protected/signin_signout_helper.dart';
 import 'package:flutter_praktek_dokter/widget/custom_button/custom__text_button.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_praktek_dokter/widget/custom_button/custom_filled_button
 import 'package:flutter_praktek_dokter/widget/custom_choice_chip/custom_choice_chip.dart';
 import 'package:flutter_praktek_dokter/widget/custom_textfromfield/custom_textformfield.dart';
 import 'package:gap/gap.dart';
+import 'package:geofence_service/geofence_service.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
@@ -25,16 +28,44 @@ class SigninSignout extends StatelessWidget {
                   child: CustomFilledButton(
                     label: "Check in",
                     onPressed: () async {
-                        Position position = await Geolocator.getCurrentPosition(
-                            desiredAccuracy: LocationAccuracy.high);
-                        bool isInGeoFence = GeoFencingManager.isGeoFenceWithinRadius(
-                          center: LatLng(-7.9792717, 113.9933517),
-                          radius: 50.0,
+                      Position position = await Geolocator.getCurrentPosition();
+                      final _geofenceStreamController =
+                          StreamController<Geofence>();
+                      // bool isInGeoFence = GeoFencingManager.isGeoFenceWithinRadius(
+                      //   center: LatLng(-7.9792717, 113.9933517),
+                      //   radius: 50.0,
+                      //   id: "workplace",
+                      //   latitude: position.latitude,
+                      //   longitude: position.longitude,
+                      // );
+                      final geofenceService = GeofenceService.instance.setup();
+                      final geofenceList = <Geofence>[
+                        Geofence(
                           id: "workplace",
-                          latitude: position.latitude,
-                          longitude: position.longitude,
-                        );
-                      print(isInGeoFence);
+                          latitude: -7.9792717,
+                          longitude: 113.9933517,
+                          radius: [
+                            GeofenceRadius(id: "radius_50_m", length: 50),
+                          ],
+                        ),
+                      ];
+                      geofenceService
+                          .start(geofenceList)
+                          .catchError((error) => print(error));
+                      // This function is to be called when the geofence status is changed.
+                      Future<void> _onGeofenceStatusChanged(
+                          Geofence geofence,
+                          GeofenceRadius geofenceRadius,
+                          GeofenceStatus geofenceStatus,
+                          Location location) async {
+                        print('geofence: ${geofence.toJson()}');
+                        print('geofenceRadius: ${geofenceRadius.toJson()}');
+                        print('geofenceStatus: ${geofenceStatus.toString()}');
+                        _geofenceStreamController.sink.add(geofence);
+                      }
+
+                      geofenceService.addGeofenceStatusChangeListener(
+                          _onGeofenceStatusChanged);
                     },
                   ),
                 ),
