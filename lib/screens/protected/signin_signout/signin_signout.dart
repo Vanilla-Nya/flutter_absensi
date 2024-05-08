@@ -24,9 +24,18 @@ class SigninSignout extends StatelessWidget {
                 Flexible(
                   child: CustomFilledButton(
                     label: "Check in",
-                    onPressed: () async => print(
-                        await Geolocator.getCurrentPosition(
-                            desiredAccuracy: LocationAccuracy.high)),
+                    onPressed: () async {
+                        Position position = await Geolocator.getCurrentPosition(
+                            desiredAccuracy: LocationAccuracy.high);
+                        bool isInGeoFence = GeoFencingManager.isGeoFenceWithinRadius(
+                          center: LatLng(-7.9792717, 113.9933517),
+                          radius: 50.0,
+                          id: "workplace",
+                          latitude: position.latitude,
+                          longitude: position.longitude,
+                        );
+                      print(isInGeoFence);
+                    },
                   ),
                 ),
                 Flexible(
