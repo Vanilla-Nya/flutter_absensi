@@ -1,15 +1,16 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_praktek_dokter/helpers/protected/signin_signout_helper.dart';
 import 'package:flutter_praktek_dokter/widget/custom_button/custom__text_button.dart';
 import 'package:flutter_praktek_dokter/widget/custom_button/custom_filled_button.dart';
+import 'package:flutter_praktek_dokter/widget/custom_card/custom_card.dart';
 import 'package:flutter_praktek_dokter/widget/custom_choice_chip/custom_choice_chip.dart';
 import 'package:flutter_praktek_dokter/widget/custom_textfromfield/custom_textformfield.dart';
 import 'package:gap/gap.dart';
 import 'package:geofence_service/geofence_service.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class SigninSignout extends StatelessWidget {
   SigninSignout({super.key});
@@ -71,7 +72,7 @@ class SigninSignout extends StatelessWidget {
                 ),
                 Flexible(
                   child: CustomFilledButton(
-                      label: "Ijin",
+                      label: "Lain-Nya",
                       onPressed: () => showModalBottomSheet(
                             constraints: BoxConstraints(
                               minWidth: MediaQuery.of(context).size.width,
@@ -125,9 +126,70 @@ class SigninSignout extends StatelessWidget {
               ],
             ),
             Flexible(
-              child: CustomFilledButton(
-                label: "Check out",
-                onPressed: () => {},
+              child: Obx(
+                () => _controller.isCheckIn.value
+                    ? CustomFilledButton(
+                        label: "Check Out",
+                        onPressed: () => _controller.handleTimechangeOut(),
+                      )
+                    : CustomFilledButton(
+                        label: "Check in",
+                        onPressed: () => _controller.handleTimechange(),
+                      ),
+              ),
+            ),
+            CustomCardWithHeader(
+              header: "Checkin",
+              children: SizedBox(
+                child: Column(
+                  children: [
+                    Obx(
+                      () => Text(
+                        _controller.datetimeIN.value,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            CustomCardWithHeader(
+              header: "Checkout",
+              children: SizedBox(
+                child: Column(
+                  children: [
+                    Obx(
+                      () => Text(
+                        _controller.datetimeOut.value,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            CustomCardWithHeader(
+              header: "Lain-Nya",
+              children: SizedBox(
+                child: Column(
+                  children: [
+                    Obx(
+                      () => Text(
+                        _controller.status.value,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ],
