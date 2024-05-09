@@ -15,6 +15,10 @@ import 'package:intl/intl.dart';
 class SigninSignout extends StatelessWidget {
   SigninSignout({super.key});
   final SigninSignOutHelper _controller = Get.put(SigninSignOutHelper());
+  final double latitudeStart = -7.9791797;
+  final double latitudeEnd = -7.9793799;
+  final double longitudeStart = 113.9933635;
+  final double longitudeEnd = 113.9933571;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,43 +33,16 @@ class SigninSignout extends StatelessWidget {
                   label: "Check in",
                   onPressed: () async {
                     Position position = await Geolocator.getCurrentPosition();
-                    final _geofenceStreamController =
-                        StreamController<Geofence>();
-                    // bool isInGeoFence = GeoFencingManager.isGeoFenceWithinRadius(
-                    //   center: LatLng(-7.9792717, 113.9933517),
-                    //   radius: 50.0,
-                    //   id: "workplace",
-                    //   latitude: position.latitude,
-                    //   longitude: position.longitude,
-                    // );
-                    final geofenceService = GeofenceService.instance.setup();
-                    final geofenceList = <Geofence>[
-                      Geofence(
-                        id: "workplace",
-                        latitude: -7.9792717,
-                        longitude: 113.9933517,
-                        radius: [
-                          GeofenceRadius(id: "radius_50_m", length: 50),
-                        ],
-                      ),
-                    ];
-                    geofenceService
-                        .start(geofenceList)
-                        .catchError((error) => print(error));
-                    // This function is to be called when the geofence status is changed.
-                    Future<void> _onGeofenceStatusChanged(
-                        Geofence geofence,
-                        GeofenceRadius geofenceRadius,
-                        GeofenceStatus geofenceStatus,
-                        Location location) async {
-                      print('geofence: ${geofence.toJson()}');
-                      print('geofenceRadius: ${geofenceRadius.toJson()}');
-                      print('geofenceStatus: ${geofenceStatus.toString()}');
-                      _geofenceStreamController.sink.add(geofence);
+                    if ((position.latitude >= latitudeStart &&
+                            position.latitude <= latitudeEnd) &&
+                        (position.longitude >= longitudeStart &&
+                            position.longitude <= longitudeEnd)) {
+                      print("true");
+                      print(position);
+                    } else {
+                      print("false");
+                      print(position);
                     }
-
-                    geofenceService.addGeofenceStatusChangeListener(
-                        _onGeofenceStatusChanged);
                   },
                 ),
               ),
