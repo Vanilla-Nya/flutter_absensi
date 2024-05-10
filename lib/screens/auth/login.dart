@@ -107,7 +107,7 @@ class LoginScreen extends StatelessWidget {
                           CustomFilledButton(
                             label: "Login",
                             onPressed: () {
-                              Get.toNamed("/Test1");
+                              _authController.signIn();
                             },
                           ),
                         ],

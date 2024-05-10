@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "267569417104",
-    "project_id": "praktek-dokter-app",
-    "storage_bucket": "praktek-dokter-app.appspot.com"
+    "project_number": "590259658171",
+    "project_id": "flutter-absensi-6ff56",
+    "storage_bucket": "flutter-absensi-6ff56.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:267569417104:android:e16b8f1d4562b080f14115",
+        "mobilesdk_app_id": "1:590259658171:android:4742a830a5291ad199f89e",
         "android_client_info": {
           "package_name": "com.example.flutter_praktek_dokter"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyARvwcGcCbBLURfJfhvQjQyyCTonscWnFQ"
+          "current_key": "AIzaSyDmpWGFuYEjYH2dais4plqE47oreZZuvZA"
         }
       ],
       "services": {

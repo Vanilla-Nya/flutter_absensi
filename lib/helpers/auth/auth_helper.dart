@@ -9,12 +9,10 @@ import 'package:get/get.dart';
 class AuthData {
   final String email;
   final String password;
-  final String token;
 
   AuthData({
     required this.email,
     required this.password,
-    required this.token,
   });
 }
 
@@ -27,22 +25,18 @@ class AuthHelper extends GetxController {
   final RxMap<String, dynamic> authData = {
     "email": "",
     "password": "",
-    "token": "",
   }.obs;
 
   final RxMap<String, bool> obscureText = {
     "password": true,
-    "token": true,
   }.obs;
 
   final RxMap<String, bool> verificationData = {
     "email": false,
     "password": false,
-    "token": false,
   }.obs;
 
   final RxBool disabledSignInButton = true.obs;
-  final RxBool disabledTokenButton = true.obs;
   final RxBool userIsLogin = false.obs;
 
   void handleSignInButton() {
@@ -50,14 +44,6 @@ class AuthHelper extends GetxController {
       disabledSignInButton.value = false;
     } else {
       disabledSignInButton.value = true;
-    }
-  }
-
-  void handleTokenButton() {
-    if (verificationData["token"]!) {
-      disabledTokenButton.value = false;
-    } else {
-      disabledTokenButton.value = true;
     }
   }
 
@@ -82,14 +68,6 @@ class AuthHelper extends GetxController {
             handleVerification(name, verificationData[name], true);
           }
           break;
-        case "token":
-          if (value.length < 10) {
-            handleVerification(name, verificationData[name], false);
-            return "Token Wajib Diisi dan Minimal Terdiri dari 10 Digit";
-          } else {
-            handleVerification(name, verificationData[name], true);
-          }
-          break;
         default:
       }
     }
@@ -99,7 +77,6 @@ class AuthHelper extends GetxController {
     verificationData[name] = value;
     verificationData.refresh();
     handleSignInButton();
-    handleTokenButton();
   }
 
   void handleObscureText(name) {
@@ -144,15 +121,13 @@ class AuthHelper extends GetxController {
           await query.then((value) async {
             if (value.data()!.isNotEmpty) {
               final user = AuthenticationModel.fromJson(value.data()!);
-              if (user.token == authData["token"]) {
-                userIsLogin.value = true;
-                return Get.snackbar(
-                  "Login Success",
-                  "Welcome ${user.username}",
-                  snackPosition: SnackPosition.BOTTOM,
-                  backgroundColor: Colors.white,
-                );
-              }
+              userIsLogin.value = true;
+              return Get.snackbar(
+                "Login Success",
+                "Welcome ${user.username}",
+                snackPosition: SnackPosition.BOTTOM,
+                backgroundColor: Colors.white,
+              );
             }
           });
         }
