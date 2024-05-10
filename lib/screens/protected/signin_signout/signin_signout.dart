@@ -82,6 +82,8 @@ class SigninSignout extends StatelessWidget {
                           );
                         },
                       );
+                    } else {
+                      print("Outside");
                     }
                   },
                 ),

@@ -10,7 +10,7 @@ import 'package:flutter_absensi/helpers/store_controller.dart';
 import 'package:flutter_absensi/routes.dart';
 import 'package:get/get.dart';
 
-import 'package:flutter_absensi/firebase_options_backup.dart';
+import 'package:flutter_absensi/firebase_options.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {

@@ -121,12 +121,12 @@ class AuthHelper extends GetxController {
           await query.then((value) async {
             if (value.data()!.isNotEmpty) {
               final user = AuthenticationModel.fromJson(value.data()!);
+              print(user.username.split("@")[0]);
               userIsLogin.value = true;
               return Get.snackbar(
                 "Login Success",
-                "Welcome ${user.username}",
+                "Welcome ${user.username.split("@")[0]}",
                 snackPosition: SnackPosition.BOTTOM,
-                backgroundColor: Colors.white,
               );
             }
           });
@@ -137,12 +137,13 @@ class AuthHelper extends GetxController {
         errorMessage = "Email Tidak Terdaftar";
       } else if (error.code == 'wrong-password') {
         errorMessage = "Password Salah";
+      } else {
+        errorMessage = "Email Atau Password Salah";
       }
       Get.snackbar(
         "Login Gagal !",
         errorMessage,
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.white,
       );
     } catch (error) {
       debugPrint(error.toString());

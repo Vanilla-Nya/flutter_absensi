@@ -1,14 +1,14 @@
 class AuthenticationModel {
   AuthenticationModel({
     required this.username,
-    required this.token,
+    required this.password,
   });
   final String username;
-  final String token;
+  final String password;
 
   factory AuthenticationModel.fromJson(Map<String, dynamic> authJSON) =>
       AuthenticationModel(
-        username: authJSON["nama"],
-        token: authJSON["token"],
+        username: authJSON["email"],
+        password: authJSON["password"],
       );
 }

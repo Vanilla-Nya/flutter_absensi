@@ -52,7 +52,9 @@ class MainScreen extends StatelessWidget {
                     child: CustomFilledButton(
                       label: "Logout",
                       onPressed: () async {
-                        await FirebaseAuth.instance.signOut();
+                        await FirebaseAuth.instance
+                            .signOut()
+                            .then((value) => print("Logout"));
                         _isUserLogin.userIsLogin.value = false;
                       },
                     ),
