@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_praktek_dokter/screens/protected/dashboard/dashboard_screen.dart';
+import 'package:flutter_absensi/screens/protected/dashboard/dashboard_screen.dart';
 
-import 'package:flutter_praktek_dokter/widget/custom_appbar/custom_appbar.dart';
+import 'package:flutter_absensi/widget/custom_appbar/custom_appbar.dart';
 import 'package:get/get.dart';
 
 class ProtectedScreen extends StatelessWidget {

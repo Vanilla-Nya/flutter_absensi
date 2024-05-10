@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_praktek_dokter/helpers/auth/auth_helper.dart';
-import 'package:flutter_praktek_dokter/screens/protected/protected_screen.dart';
-import 'package:flutter_praktek_dokter/widget/custom_button/custom_filled_button.dart';
-import 'package:flutter_praktek_dokter/widget/custom_divider/custom_divider.dart';
+import 'package:flutter_absensi/helpers/auth/auth_helper.dart';
+import 'package:flutter_absensi/screens/protected/protected_screen.dart';
+import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
+import 'package:flutter_absensi/widget/custom_divider/custom_divider.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_praktek_dokter/helpers/protected/table_data_patient_helper.dart';
-import 'package:flutter_praktek_dokter/widget/custom_data_table/custom_data_table.dart';
+import 'package:flutter_absensi/helpers/protected/table_data_patient_helper.dart';
+import 'package:flutter_absensi/widget/custom_data_table/custom_data_table.dart';
 import 'package:get/get.dart';
 // import 'package:gap/gap.dart';
 

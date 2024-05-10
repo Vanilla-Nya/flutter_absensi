@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_praktek_dokter/helpers/auth/register_helper.dart';
-import 'package:flutter_praktek_dokter/widget/custom_button/custom__text_button.dart';
-import 'package:flutter_praktek_dokter/widget/custom_button/custom_filled_button.dart';
-import 'package:flutter_praktek_dokter/widget/custom_drop_down/custom_drop_down.dart';
-import 'package:flutter_praktek_dokter/widget/custom_form/custom_form.dart';
-import 'package:flutter_praktek_dokter/widget/custom_textfromfield/custom_textformfield.dart';
+import 'package:flutter_absensi/helpers/auth/register_helper.dart';
+import 'package:flutter_absensi/widget/custom_button/custom__text_button.dart';
+import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
+import 'package:flutter_absensi/widget/custom_drop_down/custom_drop_down.dart';
+import 'package:flutter_absensi/widget/custom_form/custom_form.dart';
+import 'package:flutter_absensi/widget/custom_textfromfield/custom_textformfield.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 

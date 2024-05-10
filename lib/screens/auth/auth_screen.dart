@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_praktek_dokter/widget/custom_appbar/custom_appbar.dart';
+import 'package:flutter_absensi/widget/custom_appbar/custom_appbar.dart';
 import 'package:get/get.dart';
 
 class AuthScreen extends StatelessWidget {

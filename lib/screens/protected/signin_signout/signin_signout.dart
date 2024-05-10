@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_praktek_dokter/helpers/protected/signin_signout_helper.dart';
-import 'package:flutter_praktek_dokter/models/map/geodencing.dart';
-import 'package:flutter_praktek_dokter/widget/custom_button/custom_filled_button.dart';
-import 'package:flutter_praktek_dokter/widget/custom_card/custom_card.dart';
-import 'package:flutter_praktek_dokter/widget/custom_choice_chip/custom_choice_chip.dart';
-import 'package:flutter_praktek_dokter/widget/custom_textfromfield/custom_textformfield.dart';
+import 'package:flutter_absensi/helpers/protected/signin_signout_helper.dart';
+import 'package:flutter_absensi/models/map/geodencing.dart';
+import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
+import 'package:flutter_absensi/widget/custom_card/custom_card.dart';
+import 'package:flutter_absensi/widget/custom_choice_chip/custom_choice_chip.dart';
+import 'package:flutter_absensi/widget/custom_textfromfield/custom_textformfield.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 

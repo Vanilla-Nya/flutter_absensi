@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_praktek_dokter/helpers/auth/auth_helper.dart';
-import 'package:flutter_praktek_dokter/screens/auth/auth_screen.dart';
-import 'package:flutter_praktek_dokter/screens/auth/login.dart';
-import 'package:flutter_praktek_dokter/screens/auth/register.dart';
-import 'package:flutter_praktek_dokter/screens/protected/patient/register_patient.dart';
-import 'package:flutter_praktek_dokter/screens/protected/patient/table_data_patient.dart';
-import 'package:flutter_praktek_dokter/screens/protected/dashboard/dashboard_screen.dart';
-import 'package:flutter_praktek_dokter/screens/protected/signin_signout/signin_signout.dart';
+import 'package:flutter_absensi/helpers/auth/auth_helper.dart';
+import 'package:flutter_absensi/screens/auth/auth_screen.dart';
+import 'package:flutter_absensi/screens/auth/login.dart';
+import 'package:flutter_absensi/screens/auth/register.dart';
+import 'package:flutter_absensi/screens/protected/patient/register_patient.dart';
+import 'package:flutter_absensi/screens/protected/patient/table_data_patient.dart';
+import 'package:flutter_absensi/screens/protected/dashboard/dashboard_screen.dart';
+import 'package:flutter_absensi/screens/protected/signin_signout/signin_signout.dart';
 import 'package:get/get.dart';
 
 final AuthHelper _isUserLogin = Get.put(AuthHelper());

@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_praktek_dokter/helpers/auth/auth_helper.dart';
-import 'package:flutter_praktek_dokter/widget/custom_button/custom__text_button.dart';
-import 'package:flutter_praktek_dokter/widget/custom_card/custom_card.dart';
-import 'package:flutter_praktek_dokter/widget/custom_divider/custom_divider.dart';
-import 'package:flutter_praktek_dokter/widget/custom_form/custom_form.dart';
-import 'package:flutter_praktek_dokter/widget/custom_text/custom_text.dart';
-import 'package:flutter_praktek_dokter/widget/custom_textfromfield/custom_textformfield.dart';
+import 'package:flutter_absensi/helpers/auth/auth_helper.dart';
+import 'package:flutter_absensi/widget/custom_card/custom_card.dart';
+import 'package:flutter_absensi/widget/custom_form/custom_form.dart';
+import 'package:flutter_absensi/widget/custom_text/custom_text.dart';
+import 'package:flutter_absensi/widget/custom_textfromfield/custom_textformfield.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
-import 'package:flutter_praktek_dokter/widget/custom_button/custom_filled_button.dart';
+import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});

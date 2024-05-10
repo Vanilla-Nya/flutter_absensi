@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_praktek_dokter/widget/custom_divider/custom_divider.dart';
+import 'package:flutter_absensi/widget/custom_divider/custom_divider.dart';
 import 'package:gap/gap.dart';
 
 class CustomCardWithHeader extends StatelessWidget {
