@@ -1,4 +1,4 @@
-#Thu May 09 14:44:25 WIB 2024
+#Fri May 10 08:50:08 WIB 2024
 base.0=C\:\\Users\\asuna\\OneDrive\\Documents\\GitHub\\flutter_absensi\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\asuna\\OneDrive\\Documents\\GitHub\\flutter_absensi\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\asuna\\OneDrive\\Documents\\GitHub\\flutter_absensi\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex

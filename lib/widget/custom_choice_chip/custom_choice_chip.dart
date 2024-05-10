@@ -9,12 +9,14 @@ class CustomChoiceChip extends StatelessWidget {
     required this.content,
     required this.length,
     this.onSelected,
+    this.fontsize,
   });
   final String title;
   final List<String> content;
   final int length;
   final void Function(bool)? onSelected;
   final SigninSignOutHelper _controller = Get.put(SigninSignOutHelper());
+  final double? fontsize;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,13 @@ class CustomChoiceChip extends StatelessWidget {
             length,
             (int index) {
               return Obx(() => ChoiceChip(
-                    label: Text(content[index]),
+                    label: Text(
+                      content[index],
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: fontsize,
+                      ),
+                    ),
                     selected: _controller.value.value == index,
                     onSelected: (bool selected) =>
                         _controller.handleChange(selected, index),
