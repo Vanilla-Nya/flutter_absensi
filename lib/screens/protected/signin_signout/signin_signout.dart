@@ -6,6 +6,7 @@ import 'package:flutter_absensi/widget/custom_card/custom_card.dart';
 import 'package:flutter_absensi/widget/custom_choice_chip/custom_choice_chip.dart';
 import 'package:flutter_absensi/widget/custom_textfromfield/custom_textformfield.dart';
 import 'package:gap/gap.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 class SigninSignout extends StatelessWidget {
@@ -29,12 +30,14 @@ class SigninSignout extends StatelessWidget {
                           SquareGeoFencing(
                             id: "Puskesmas Sumber Wringin",
                             latitudeStart: -7.9791797,
-                            latitudeEnd: -7.9793799,
+                            latitudeEnd: -7.979752,
                             longitudeStart: 113.9933635,
-                            longitudeEnd: 113.9933571,
+                            longitudeEnd: 113.9936065,
                           ),
                         ]).isInsideSquareGeoFencing();
-                    if (isInside) {
+
+                    if (!isInside) {
+                      Get.snackbar("Outside", "");
                       if (!context.mounted) return;
                       return showModalBottomSheet(
                         constraints: BoxConstraints(
@@ -83,7 +86,9 @@ class SigninSignout extends StatelessWidget {
                         },
                       );
                     } else {
-                      print("Outside");
+                      Position position = await Geolocator.getCurrentPosition();
+                      print(position);
+                      Get.snackbar("Inside", "");
                     }
                   },
                 ),

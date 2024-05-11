@@ -25,7 +25,7 @@ class GeoFencing {
     Position position = await Geolocator.getCurrentPosition();
     for (var geoFencing in listSquareGeoFencing!) {
       if (position.latitude
-              .isBetween(geoFencing.latitudeStart, geoFencing.latitudeEnd) &&
+              .isMinBetween(geoFencing.latitudeStart, geoFencing.latitudeEnd) &&
           position.longitude
               .isBetween(geoFencing.longitudeStart, geoFencing.longitudeEnd)) {
         return true;
@@ -38,6 +38,10 @@ class GeoFencing {
 }
 
 extension Range on double {
+  bool isMinBetween(double from, double to) {
+    return from >= this && this >= to;
+  }
+
   bool isBetween(double from, double to) {
     return from <= this && this <= to;
   }
