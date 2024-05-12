@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_absensi/helpers/auth/auth_helper.dart';
 import 'package:flutter_absensi/screens/protected/protected_screen.dart';
-import 'package:flutter_absensi/screens/protected/signin_signout/signin_signout.dart';
 import 'package:flutter_absensi/widget/custom_divider/custom_divider.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
 class DashboardScreen extends StatelessWidget {
-  DashboardScreen({super.key});
-  final AuthHelper _isUserLogin = Get.put(AuthHelper());
+  DashboardScreen({super.key, required this.child});
+  final Widget child;
   final MyDrawerController _myDrawer = Get.put(MyDrawerController());
 
   @override
@@ -22,24 +20,20 @@ class DashboardScreen extends StatelessWidget {
       drawerShadowsBackgroundColor: Colors.grey[300]!,
       slideWidth: MediaQuery.of(context).size.width * 0.3,
       menuScreen: const DrawerMenu(),
-      mainScreen: MainScreen(isUserLogin: _isUserLogin),
+      mainScreen: child,
     );
   }
 }
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({
-    super.key,
-    required AuthHelper isUserLogin,
-  }) : _isUserLogin = isUserLogin;
-
-  final AuthHelper _isUserLogin;
+  const MainScreen({super.key, required this.child});
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return ProtectedScreen(
       title: "Dashboard Screen",
-      child: SigninSignout(),
+      child: child,
       // Container(
       //   color: Colors.white,
       //   child: Padding(
