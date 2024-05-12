@@ -11,10 +11,12 @@ class CustomCardWithHeader extends StatelessWidget {
     this.divider,
     this.fontsize,
     this.fontweight = FontWeight.bold,
+    this.isGap = true,
   });
   final String header;
   final Widget children;
   final CustomDivider? divider;
+  final bool isGap;
 
   final int? flex;
   final double? fontsize;
@@ -38,7 +40,7 @@ class CustomCardWithHeader extends StatelessWidget {
             ),
           ),
           divider ?? const CustomDivider(space: 20.0),
-          const Gap(10.0),
+          isGap ? const Gap(10.0) : const Gap(0.0),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: children,

@@ -31,7 +31,7 @@ class Routes {
           widget: DashboardScreen(),
           secondWidget: AuthScreen(
             title: 'Register Screen',
-            child: SigninSignout(),
+            child: Text("Null"),
           ),
         );
       },

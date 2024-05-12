@@ -35,6 +35,19 @@ class GeoFencing {
     }
     return false;
   }
+
+  Future<Map> listGeoFencing() async {
+    for (var geoFencing in listSquareGeoFencing!) {
+      return {
+        "workplaceId": geoFencing.id,
+        "latitudeStart": geoFencing.latitudeStart,
+        "latitudeEnd": geoFencing.latitudeEnd,
+        "longitudeStart": geoFencing.longitudeStart,
+        "longitudeEnd": geoFencing.longitudeEnd,
+      };
+    }
+    return {};
+  }
 }
 
 extension Range on double {
