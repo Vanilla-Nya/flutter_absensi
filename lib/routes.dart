@@ -3,7 +3,9 @@ import 'package:flutter_absensi/helpers/auth/auth_helper.dart';
 import 'package:flutter_absensi/screens/auth/auth_screen.dart';
 import 'package:flutter_absensi/screens/auth/login.dart';
 import 'package:flutter_absensi/screens/auth/register.dart';
-import 'package:flutter_absensi/screens/protected/Register/table_user.dart';
+import 'package:flutter_absensi/screens/protected/Register/register_place.dart';
+import 'package:flutter_absensi/screens/protected/Table/table_place.dart';
+import 'package:flutter_absensi/screens/protected/Table/table_user.dart';
 import 'package:flutter_absensi/screens/protected/patient/register_patient.dart';
 import 'package:flutter_absensi/screens/protected/patient/table_data_patient.dart';
 import 'package:flutter_absensi/screens/protected/dashboard/dashboard_screen.dart';
@@ -43,14 +45,14 @@ class Routes {
       name: '/test',
       page: () => AuthScreen(
         title: 'Table Data Patient',
-        child: TableUser(),
+        child: TablePlace(),
       ),
     ),
     GetPage(
       name: '/test1',
       page: () => AuthScreen(
         title: 'Register Patient',
-        child: RegisterUser(),
+        child: RegisterPlace(),
       ),
     ),
   ];

@@ -1,53 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_absensi/helpers/protected/table_user_helper.dart';
+import 'package:flutter_absensi/helpers/protected/table_place_helper.dart';
 import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
 import 'package:flutter_absensi/widget/custom_card/custom_card.dart';
 import 'package:flutter_absensi/widget/custom_textfromfield/custom_textformfield.dart';
 import 'package:get/get.dart';
 
-class RegisterUser extends StatelessWidget {
-  RegisterUser({super.key});
+class RegisterPlace extends StatelessWidget {
+  RegisterPlace({super.key});
 
-  final tableUserHelper = Get.put(TableUserHelper());
+  final tablePlaceHelper = Get.put(TablePlaceHelper());
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       child: CustomCardWithHeader(
-        header: "Register",
+        header: "Register Place",
         children: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             CustomTextFormField(
-              label: "Email",
+              label: "LatitudeStart",
               verification: true,
-              keyboardType: TextInputType.emailAddress,
-              onSave: (value) =>
-                  tableUserHelper.handleAddNewtableContent("Email", value),
+              onSave: (value) => tablePlaceHelper.handleAddNewtableContent(
+                  "LatitudeStart", value),
             ),
             CustomTextFormField(
-              label: "Password",
+              label: "LatitudeEnd",
               verification: true,
-              onSave: (value) =>
-                  tableUserHelper.handleAddNewtableContent("Password", value),
+              onSave: (value) => tablePlaceHelper.handleAddNewtableContent(
+                  "LatitudeEnd", value),
             ),
             CustomTextFormField(
-              label: "Nama",
+              label: "LongitudeStart",
               verification: true,
-              onSave: (value) =>
-                  tableUserHelper.handleAddNewtableContent("Nama", value),
+              onSave: (value) => tablePlaceHelper.handleAddNewtableContent(
+                  "LongitudeStart", value),
             ),
             CustomTextFormField(
-              label: "No.Telp",
+              label: "LongitudeEnd",
               verification: true,
-              keyboardType: TextInputType.number,
-              onSave: (value) =>
-                  tableUserHelper.handleAddNewtableContent("No.Telp", value),
+              onSave: (value) => tablePlaceHelper.handleAddNewtableContent(
+                  "LongitudeEnd", value),
             ),
             CustomFilledButton(
               label: "Submit",
               onPressed: () {
-                tableUserHelper.handleSubmitAddDataContent();
+                tablePlaceHelper.handleSubmitAddDataContent();
               },
             ),
             CustomFilledButton(
@@ -60,5 +58,6 @@ class RegisterUser extends StatelessWidget {
         ),
       ),
     );
+    ;
   }
 }
