@@ -9,6 +9,7 @@ class CustomTextFormField extends StatelessWidget {
     this.focusNode,
     this.validator,
     this.keyboardType,
+    this.inputFormatter,
     this.obscureText,
     this.readOnly,
     this.maxlines,
@@ -38,6 +39,7 @@ class CustomTextFormField extends StatelessWidget {
 
   // Define Use Which Keyboard Type, e.g Text, Number, Email
   final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatter;
 
   // Is Text Form Field is Password Related ?
   final bool? obscureText;
@@ -106,7 +108,7 @@ class CustomTextFormField extends StatelessWidget {
           keyboardType: keyboardType ?? TextInputType.text,
           inputFormatters: keyboardType == TextInputType.number
               ? [FilteringTextInputFormatter.digitsOnly]
-              : [],
+              : inputFormatter ?? [],
           onChanged: onSave,
           maxLength: length,
           // if Date Time onTap Popup Date Picker
