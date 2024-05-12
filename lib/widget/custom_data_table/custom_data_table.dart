@@ -6,10 +6,12 @@ class CustomDataTable extends StatelessWidget {
     super.key,
     required this.title,
     required this.datalabel,
+    this.ontap,
   });
 
   final List<String> title;
   final List datalabel;
+  final void Function()? ontap;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class CustomDataTable extends StatelessWidget {
               title.length,
               (index) => DataCell(
                 Text(e[title[index]]),
+                onTap: ontap,
               ),
             ).toList(),
           );
