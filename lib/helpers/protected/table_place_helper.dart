@@ -4,6 +4,7 @@ class TablePlaceHelper extends GetxController {
   final RxList tableTitle = [].obs;
   final RxList tableContent = [].obs;
   final RxMap<String, dynamic> addNewTableContentData = {
+    "ID": "",
     "LatitudeStart": "",
     "LatitudeEnd": "",
     "LongitudeStart": "",

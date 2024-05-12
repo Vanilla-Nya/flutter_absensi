@@ -19,6 +19,12 @@ class RegisterPlace extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             CustomTextFormField(
+              label: "ID",
+              verification: true,
+              onSave: (value) => tablePlaceHelper.handleAddNewtableContent(
+                  "LatitudeStart", value),
+            ),
+            CustomTextFormField(
               label: "LatitudeStart",
               verification: true,
               onSave: (value) => tablePlaceHelper.handleAddNewtableContent(

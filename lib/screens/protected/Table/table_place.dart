@@ -25,6 +25,7 @@ class TablePlace extends StatelessWidget {
                   tablePlaceHelper.tableContent.isEmpty
                       ? const CustomDataTable(
                           title: [
+                            "ID",
                             "LatitudeStart",
                             "LatitudeEnd",
                             "LongitudeStart",
@@ -32,6 +33,7 @@ class TablePlace extends StatelessWidget {
                           ],
                           datalabel: [
                             {
+                              "ID": "",
                               "LatitudeStart": "",
                               "LatitudeEnd": "",
                               "LongitudeStart": "",
