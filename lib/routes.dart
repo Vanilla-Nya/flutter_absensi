@@ -45,17 +45,31 @@ class Routes {
     ),
     GetPage(
       name: '/test',
-      page: () => AuthScreen(
-        title: 'Table Data Patient',
-        child: TablePlace(),
-      ),
+      page: () {
+        return CustomRoutes(
+          widget: DashboardScreen(
+            child: ProtectedScreen(title: "Dashbaord", child: TablePlace()),
+          ),
+          secondWidget: AuthScreen(
+            title: 'Register Screen',
+            child: Text("Null"),
+          ),
+        );
+      },
     ),
     GetPage(
       name: '/test1',
-      page: () => AuthScreen(
-        title: 'Register Patient',
-        child: RegisterPlace(),
-      ),
+      page: () {
+        return CustomRoutes(
+          widget: DashboardScreen(
+            child: ProtectedScreen(title: "Dashbaord", child: RegisterPlace()),
+          ),
+          secondWidget: AuthScreen(
+            title: 'Register Screen',
+            child: Text("Null"),
+          ),
+        );
+      },
     ),
   ];
 }
