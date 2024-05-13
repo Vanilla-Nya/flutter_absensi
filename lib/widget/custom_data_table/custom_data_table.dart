@@ -16,8 +16,9 @@ class CustomDataTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> listtitle = title
-        .map((label) =>
-            Text(label == "nik" ? label.toUpperCase() : label.capitalize!))
+        .map((label) => Text(label == "nik" || label == "ID"
+            ? label.toUpperCase()
+            : label.capitalize!))
         .toList();
 
     return Flexible(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_absensi/helpers/protected/table_place_helper.dart';
 import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
 import 'package:flutter_absensi/widget/custom_card/custom_card.dart';
@@ -21,30 +22,68 @@ class RegisterPlace extends StatelessWidget {
             CustomTextFormField(
               label: "ID",
               verification: true,
-              onSave: (value) => tablePlaceHelper.handleAddNewtableContent(
-                  "LatitudeStart", value),
+              onSave: (value) =>
+                  tablePlaceHelper.handleAddNewtableContent("ID", value),
             ),
             CustomTextFormField(
               label: "LatitudeStart",
               verification: true,
+              keyboardType: const TextInputType.numberWithOptions(
+                signed: true,
+                decimal: true,
+              ),
+              inputFormatter: [
+                FilteringTextInputFormatter.allow(
+                  RegExp(
+                      '^[-+]?((90(\\.0)?)|([1-8]?\\d{0,1}(\\.\\d{0,7})?)|(-90(\\.0)?))'),
+                )
+              ],
               onSave: (value) => tablePlaceHelper.handleAddNewtableContent(
                   "LatitudeStart", value),
             ),
             CustomTextFormField(
               label: "LatitudeEnd",
               verification: true,
+              keyboardType: const TextInputType.numberWithOptions(
+                signed: true,
+                decimal: true,
+              ),
+              inputFormatter: [
+                FilteringTextInputFormatter.allow(
+                  RegExp(
+                      '^[-+]?((90(\\.0)?)|([1-8]?\\d{0,1}(\\.\\d{0,7})?)|(-90(\\.0)?))'),
+                )
+              ],
               onSave: (value) => tablePlaceHelper.handleAddNewtableContent(
                   "LatitudeEnd", value),
             ),
             CustomTextFormField(
               label: "LongitudeStart",
               verification: true,
+              keyboardType: const TextInputType.numberWithOptions(
+                signed: true,
+                decimal: true,
+              ),
+              inputFormatter: [
+                FilteringTextInputFormatter.allow(RegExp(
+                    '^[-+]?((180(\\.0)?)|([1-8]?\\d{0,2}(\\.\\d{0,7})?)|(-180(\\.0)?))'))
+              ],
               onSave: (value) => tablePlaceHelper.handleAddNewtableContent(
                   "LongitudeStart", value),
             ),
             CustomTextFormField(
               label: "LongitudeEnd",
               verification: true,
+              keyboardType: const TextInputType.numberWithOptions(
+                signed: true,
+                decimal: true,
+              ),
+              inputFormatter: [
+                FilteringTextInputFormatter.allow(
+                  RegExp(
+                      '^[-+]?((180(\\.0)?)|([1-8]?\\d{0,2}(\\.\\d{0,7})?)|(-180(\\.0)?))'),
+                )
+              ],
               onSave: (value) => tablePlaceHelper.handleAddNewtableContent(
                   "LongitudeEnd", value),
             ),
