@@ -34,31 +34,6 @@ class MainScreen extends StatelessWidget {
     return ProtectedScreen(
       title: "Dashboard Screen",
       child: child,
-      // Container(
-      //   color: Colors.white,
-      //   child: Padding(
-      //     padding: const EdgeInsets.all(8.0),
-      //     child: Column(
-      //       children: [
-      //         Row(
-      //           children: [
-      //             Flexible(
-      //               child: CustomFilledButton(
-      //                 label: "Logout",
-      //                 onPressed: () async {
-      //                   await FirebaseAuth.instance
-      //                       .signOut()
-      //                       .then((value) => print("Logout"));
-      //                   _isUserLogin.userIsLogin.value = false;
-      //                 },
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

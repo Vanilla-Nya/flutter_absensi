@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_absensi/models/user/authentication_model.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class AuthData {
   final String email;
@@ -108,6 +109,7 @@ class AuthHelper extends GetxController {
 
   void signIn() async {
     String errorMessage = "";
+    final cacheUser = GetStorage();
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(
@@ -121,11 +123,17 @@ class AuthHelper extends GetxController {
           await query.then((value) async {
             if (value.data()!.isNotEmpty) {
               final user = AuthenticationModel.fromJson(value.data()!);
-              print(user.username.split("@")[0]);
+              cacheUser.write("user", {
+                "email": user.email,
+                "name": user.name,
+                "password": user.password,
+                "role": user.role,
+                "telpNumber": user.telpNumber,
+              });
               userIsLogin.value = true;
               return Get.snackbar(
                 "Login Success",
-                "Welcome ${user.username.split("@")[0]}",
+                "Welcome ${user.email.split("@")[0]}",
                 snackPosition: SnackPosition.BOTTOM,
               );
             }
@@ -138,6 +146,7 @@ class AuthHelper extends GetxController {
       } else if (error.code == 'wrong-password') {
         errorMessage = "Password Salah";
       } else {
+        print(error);
         errorMessage = "Email Atau Password Salah";
       }
       Get.snackbar(

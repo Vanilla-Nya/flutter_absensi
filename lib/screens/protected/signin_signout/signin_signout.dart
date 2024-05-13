@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_absensi/helpers/auth/auth_helper.dart';
 import 'package:flutter_absensi/helpers/protected/signin_signout_helper.dart';
 import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
 import 'package:flutter_absensi/widget/custom_card/custom_card.dart';
@@ -6,17 +8,46 @@ import 'package:flutter_absensi/widget/custom_choice_chip/custom_choice_chip.dar
 import 'package:flutter_absensi/widget/custom_textfromfield/custom_textformfield.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class SigninSignout extends StatelessWidget {
   SigninSignout({super.key});
   final SigninSignOutHelper _controller = Get.put(SigninSignOutHelper());
+  final AuthHelper _isUserLogin = Get.put(AuthHelper());
+  final cache = GetStorage();
   @override
   Widget build(BuildContext context) {
+    print(cache.read("user"));
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          Container(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Flexible(
+                        child: CustomFilledButton(
+                          label: "Logout",
+                          onPressed: () async {
+                            await FirebaseAuth.instance
+                                .signOut()
+                                .then((value) => print("Logout"));
+                            _isUserLogin.userIsLogin.value = false;
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
