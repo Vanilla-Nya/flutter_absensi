@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_absensi/helpers/global/globals.dart';
 import 'package:flutter_absensi/models/map/geofencing.dart';
 import 'package:flutter_absensi/models/user/user_model.dart';
 import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
@@ -73,15 +74,7 @@ class SigninSignOutHelper extends GetxController {
   }
 
   handleTimechange(label, context) async {
-    final users = db.collection("Users");
-    final query = users.doc(auth.currentUser!.uid).get();
-
-    String currentName = "";
-    await query.then((userData) async {
-      if (userData.data()!.isNotEmpty) {
-        currentName = UserModel.fromJson(userData.data()!).name;
-      }
-    });
+    final String currentName = cache.read("user")["name"];
     if (label == "Check In") {
       isCheckIn.value = !isCheckIn.value;
       datetimeIN.value =

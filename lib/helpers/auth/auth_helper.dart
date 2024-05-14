@@ -101,21 +101,20 @@ class AuthHelper extends GetxController {
   // Check User Is Login or Not
   checkIsUserLogin(uid) async {
     // IF UID = null then userIsLogin = false
-    if (uid == null) {
+    if (uid.length == 0) {
       userIsLogin.value = false;
     } else {
-      // Change to Get From Cache
-      final users = db.collection("Users");
-      final query = users.doc(uid).get();
-
-      await query.then((userData) async {
-        if (userData.data()!.isNotEmpty) {
-          userIsLogin.value = true;
-        } else {
-          userIsLogin.value = false;
-        }
-      });
+      // Read Cache User
+      final user = cache.read("user");
+      // If Not Null return true otherwise false
+      if (user != null) {
+        userIsLogin.value = true;
+      } else {
+        userIsLogin.value = false;
+      }
     }
+    // Write Cache userIsLogin
+    cache.write("userIsLogin", userIsLogin.value);
   }
 
   // Handle Sign In
@@ -148,6 +147,7 @@ class AuthHelper extends GetxController {
               });
               // Set User Is Login to true
               userIsLogin.value = true;
+              cache.write("userIsLogin", userIsLogin.value);
               // Inform User with Snackbar
               return Get.snackbar(
                 "Login Success",

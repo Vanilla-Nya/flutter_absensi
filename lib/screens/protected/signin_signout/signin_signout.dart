@@ -8,16 +8,13 @@ import 'package:flutter_absensi/widget/custom_choice_chip/custom_choice_chip.dar
 import 'package:flutter_absensi/widget/custom_textfromfield/custom_textformfield.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class SigninSignout extends StatelessWidget {
   SigninSignout({super.key});
   final SigninSignOutHelper _controller = Get.put(SigninSignOutHelper());
   final AuthHelper _isUserLogin = Get.put(AuthHelper());
-  final cache = GetStorage();
   @override
   Widget build(BuildContext context) {
-    print(cache.read("user"));
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
