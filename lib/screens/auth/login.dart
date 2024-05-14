@@ -9,10 +9,8 @@ import 'package:get/get.dart';
 
 import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
-
-  final _authController = Get.put(AuthHelper());
+class LoginScreen extends GetView<AuthHelper> {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,26 +40,23 @@ class LoginScreen extends StatelessWidget {
                     // Email and Password Text Field with Map
                     // textFields,
                     CustomForm(
-                      formKey: _authController.formKeyLogin.value,
+                      formKey: controller.formKeyLogin,
                       onChanged: () {
-                        _authController.handleSignInButton();
+                        controller.handleSignInButton();
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-// on Save and validator simplified with make function and passing the value
                           CustomTextFormField(
-                            focusNode: _authController.focusEmail,
+                            focusNode: controller.focusEmail,
                             label: "Email",
-                            verification:
-                                _authController.verificationData["email"]!,
+                            verification: controller.verificationData["email"]!,
                             onSave: (value) =>
-                                _authController.handleLoginTextFormFieldChanged(
+                                controller.handleLoginTextFormFieldChanged(
                               "email",
                               value,
                             ),
-                            validator: (value) =>
-                                _authController.validatorLogIn(
+                            validator: (value) => controller.validatorLogIn(
                               "email",
                               value,
                             ),
@@ -69,22 +64,22 @@ class LoginScreen extends StatelessWidget {
                           ),
                           Obx(
                             () => CustomTextFormField(
-                              focusNode: _authController.focusPassword,
+                              focusNode: controller.focusPassword,
                               label: "Password",
                               obscureText:
-                                  _authController.obscureText["password"],
+                                  controller.obsecureTextPassword.value,
                               verification:
-                                  _authController.verificationData["password"]!,
-                              onSave: (value) => _authController
-                                  .handleLoginTextFormFieldChanged(
+                                  controller.verificationData["password"]!,
+                              onSave: (value) =>
+                                  controller.handleLoginTextFormFieldChanged(
                                 "password",
                                 value,
                               ),
                               suffixIcon: IconButton(
                                 onPressed: () {
-                                  _authController.handleObscureText("password");
+                                  controller.handleObscureText();
                                 },
-                                icon: _authController.obscureText["password"]!
+                                icon: controller.obsecureTextPassword.value
                                     ? const Icon(
                                         Icons.visibility,
                                       )
@@ -93,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                                       ),
                               ),
                               validator: (value) {
-                                return _authController.validatorLogIn(
+                                return controller.validatorLogIn(
                                   "password",
                                   value,
                                 );
@@ -104,12 +99,14 @@ class LoginScreen extends StatelessWidget {
 
                           const Gap(10.0),
                           // Button to Input Token
-                          CustomFilledButton(
-                            label: "Login",
-                            onPressed: () {
-                              _authController.signIn();
-                            },
-                          ),
+                          Obx(() => CustomFilledButton(
+                                label: "Login",
+                                onPressed: controller.disabledSignInButton.value
+                                    ? null
+                                    : () {
+                                        controller.signIn();
+                                      },
+                              )),
                         ],
                       ),
                     ),

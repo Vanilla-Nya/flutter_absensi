@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_absensi/models/map/geofencing.dart';
-import 'package:flutter_absensi/models/user/authentication_model.dart';
+import 'package:flutter_absensi/models/user/user_model.dart';
 import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
 import 'package:flutter_absensi/widget/custom_choice_chip/custom_choice_chip.dart';
 import 'package:flutter_absensi/widget/custom_textfromfield/custom_textformfield.dart';
@@ -79,7 +79,7 @@ class SigninSignOutHelper extends GetxController {
     String currentName = "";
     await query.then((userData) async {
       if (userData.data()!.isNotEmpty) {
-        currentName = AuthenticationModel.fromJson(userData.data()!).name;
+        currentName = UserModel.fromJson(userData.data()!).name;
       }
     });
     if (label == "Check In") {

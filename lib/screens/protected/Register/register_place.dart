@@ -103,6 +103,5 @@ class RegisterPlace extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }
