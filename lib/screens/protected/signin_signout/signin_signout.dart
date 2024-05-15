@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_absensi/helpers/protected/signin_signout_helper.dart';
 import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
 import 'package:flutter_absensi/widget/custom_card/custom_card.dart';
@@ -47,15 +46,15 @@ class SigninSignout extends StatelessWidget {
               firstChild: mobileScreen(),
               secondChild: desktopScreen(),
               crossFadeState: MediaQuery.of(context).size.width > 700
-                  ? CrossFadeState.showFirst
-                  : CrossFadeState.showSecond,
-              duration: const Duration(seconds: 1)),
+                  ? CrossFadeState.showSecond
+                  : CrossFadeState.showFirst,
+              duration: const Duration(milliseconds: 500)),
         ],
       ),
     );
   }
 
-  Widget desktopScreen() {
+  Widget mobileScreen() {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -130,7 +129,7 @@ class SigninSignout extends StatelessWidget {
     );
   }
 
-  Widget mobileScreen() {
+  Widget desktopScreen() {
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -18,7 +18,7 @@ class DashboardScreen extends StatelessWidget {
       angle: -12.0,
       style: DrawerStyle.defaultStyle,
       drawerShadowsBackgroundColor: Colors.grey[300]!,
-      slideWidth: MediaQuery.of(context).size.width * 0.3,
+      slideWidth: 300,
       menuScreen: const DrawerMenu(),
       mainScreen: child,
     );
