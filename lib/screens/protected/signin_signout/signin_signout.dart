@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_absensi/helpers/protected/signin_signout_helper.dart';
 import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
 import 'package:flutter_absensi/widget/custom_card/custom_card.dart';
@@ -42,7 +43,24 @@ class SigninSignout extends StatelessWidget {
             child: CustomFilledButton(
                 label: "Lain-Nya", onPressed: () => showAlasan(context)),
           ),
-          CustomCardWithHeader(
+          AnimatedCrossFade(
+              firstChild: mobileScreen(),
+              secondChild: desktopScreen(),
+              crossFadeState: MediaQuery.of(context).size.width > 700
+                  ? CrossFadeState.showFirst
+                  : CrossFadeState.showSecond,
+              duration: const Duration(seconds: 1)),
+        ],
+      ),
+    );
+  }
+
+  Widget desktopScreen() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Flexible(
+          child: CustomCardWithHeader(
             header: "Checkin",
             children: Column(
               children: [
@@ -58,7 +76,9 @@ class SigninSignout extends StatelessWidget {
               ],
             ),
           ),
-          CustomCardWithHeader(
+        ),
+        Flexible(
+          child: CustomCardWithHeader(
             header: "Checkout",
             children: Column(
               children: [
@@ -74,7 +94,9 @@ class SigninSignout extends StatelessWidget {
               ],
             ),
           ),
-          CustomCardWithHeader(
+        ),
+        Flexible(
+          child: CustomCardWithHeader(
             isGap: false,
             header: "Lain-Nya",
             children: Padding(
@@ -103,8 +125,84 @@ class SigninSignout extends StatelessWidget {
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
+    );
+  }
+
+  Widget mobileScreen() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Flexible(
+          child: CustomCardWithHeader(
+            header: "Checkin",
+            children: Column(
+              children: [
+                Obx(
+                  () => Text(
+                    _controller.datetimeIN.value,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Flexible(
+          child: CustomCardWithHeader(
+            header: "Checkout",
+            children: Column(
+              children: [
+                Obx(
+                  () => Text(
+                    _controller.datetimeOut.value,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        Flexible(
+          child: CustomCardWithHeader(
+            isGap: false,
+            header: "Lain-Nya",
+            children: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Obx(
+                () => Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      _controller.status.value.capitalize!,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Gap(5.0),
+                    Text(
+                      _controller.valueAlasan.value,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 

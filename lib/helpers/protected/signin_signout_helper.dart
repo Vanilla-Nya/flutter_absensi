@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class SigninSignOutHelper extends GetxController {
+  final RxBool isLoading = false.obs;
   final value = 0.obs;
   final datetimeIN = "".obs;
   final datetimeOut = "".obs;
