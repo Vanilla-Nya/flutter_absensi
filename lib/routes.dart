@@ -23,7 +23,7 @@ class Routes {
                 child: SigninSignout(),
               ),
             ),
-            secondWidget: AuthScreen(
+            secondWidget: const AuthScreen(
               title: "Login Screen",
               child: LoginScreen(),
             ),
@@ -34,11 +34,11 @@ class Routes {
       page: () {
         return CustomRoutes(
           widget: DashboardScreen(
-            child: ProtectedScreen(title: "Dashbaord", child: SigninSignout()),
+            child: ProtectedScreen(title: "Dashboard", child: SigninSignout()),
           ),
-          secondWidget: AuthScreen(
+          secondWidget: const AuthScreen(
             title: 'Register Screen',
-            child: Text("Null"),
+            child: LoginScreen(),
           ),
         );
       },
@@ -50,7 +50,7 @@ class Routes {
           widget: DashboardScreen(
             child: ProtectedScreen(title: "Dashbaord", child: TablePlace()),
           ),
-          secondWidget: AuthScreen(
+          secondWidget: const AuthScreen(
             title: 'Register Screen',
             child: Text("Null"),
           ),
@@ -64,7 +64,7 @@ class Routes {
           widget: DashboardScreen(
             child: ProtectedScreen(title: "Dashbaord", child: RegisterPlace()),
           ),
-          secondWidget: AuthScreen(
+          secondWidget: const AuthScreen(
             title: 'Register Screen',
             child: Text("Null"),
           ),

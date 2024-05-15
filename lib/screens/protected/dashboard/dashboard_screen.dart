@@ -82,7 +82,7 @@ class DrawerMenu extends StatelessWidget {
               leading: const Icon(Icons.dashboard_rounded),
               title: const Text("Dashboard"),
               onTap: () {
-                print("Dashboard");
+                Get.toNamed("/");
               },
             ),
             const CustomDivider(
