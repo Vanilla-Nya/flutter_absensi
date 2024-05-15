@@ -1,6 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_absensi/helpers/auth/auth_helper.dart';
 import 'package:flutter_absensi/helpers/protected/signin_signout_helper.dart';
 import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
 import 'package:flutter_absensi/widget/custom_card/custom_card.dart';
@@ -12,7 +10,6 @@ import 'package:get/get.dart';
 class SigninSignout extends StatelessWidget {
   SigninSignout({super.key});
   final SigninSignOutHelper _controller = Get.put(SigninSignOutHelper());
-  final AuthHelper _isUserLogin = Get.put(AuthHelper());
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,31 +17,6 @@ class SigninSignout extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Flexible(
-                        child: CustomFilledButton(
-                          label: "Logout",
-                          onPressed: () async {
-                            await FirebaseAuth.instance
-                                .signOut()
-                                .then((value) => print("Logout"));
-                            _isUserLogin.userIsLogin.value = false;
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [

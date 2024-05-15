@@ -99,14 +99,21 @@ class LoginScreen extends GetView<AuthHelper> {
 
                           const Gap(10.0),
                           // Button to Input Token
-                          Obx(() => CustomFilledButton(
+
+                          Obx(() {
+                            if (controller.isLoading.value) {
+                              return const CircularProgressIndicator();
+                            } else {
+                              return CustomFilledButton(
                                 label: "Login",
                                 onPressed: controller.disabledSignInButton.value
                                     ? null
                                     : () {
                                         controller.signIn();
                                       },
-                              )),
+                              );
+                            }
+                          }),
                         ],
                       ),
                     ),

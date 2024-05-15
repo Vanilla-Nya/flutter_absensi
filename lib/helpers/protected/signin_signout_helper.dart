@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_absensi/helpers/global/globals.dart';
 import 'package:flutter_absensi/models/map/geofencing.dart';
-import 'package:flutter_absensi/models/user/user_model.dart';
 import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
 import 'package:flutter_absensi/widget/custom_choice_chip/custom_choice_chip.dart';
 import 'package:flutter_absensi/widget/custom_textfromfield/custom_textformfield.dart';
@@ -16,7 +15,7 @@ class SigninSignOutHelper extends GetxController {
   final value = 0.obs;
   final datetimeIN = "".obs;
   final datetimeOut = "".obs;
-  final status = "Sakit".obs;
+  final status = "".obs;
   final valueAlasan = "".obs;
   final isCheckIn = false.obs;
   final isCheckOut = false.obs;

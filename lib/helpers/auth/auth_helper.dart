@@ -6,6 +6,9 @@ import 'package:flutter_absensi/helpers/global/globals.dart';
 import 'package:get/get.dart';
 
 class AuthHelper extends GetxController {
+  // Loading State
+  final RxBool isLoading = false.obs;
+
   // Form Key
   final formKeyLogin = GlobalKey<FormState>();
 
@@ -119,6 +122,9 @@ class AuthHelper extends GetxController {
 
   // Handle Sign In
   void signIn() async {
+    // Set Loading to True
+    isLoading.value = true;
+
     // Declare Error Message
     String errorMessage = "";
 
@@ -175,5 +181,6 @@ class AuthHelper extends GetxController {
       // If Error From System
       debugPrint(error.toString());
     }
+    isLoading.value = false;
   }
 }
