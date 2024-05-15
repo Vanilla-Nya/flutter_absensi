@@ -16,7 +16,7 @@ class CustomFilledButton extends StatelessWidget {
   Widget build(BuildContext context) {
     // Return if icon not Null Then Set Widget To FillledButton.icon
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8.0, 0.0, 4.0, 8.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 0.0, 4.0, 8.0),
       child: icon != null
           ? FilledButton.icon(
               label: Text(label),

@@ -44,29 +44,33 @@ class Routes {
       },
     ),
     GetPage(
-      name: '/test',
+      name: '/registered-location',
       page: () {
         return CustomRoutes(
           widget: DashboardScreen(
-            child: ProtectedScreen(title: "Dashbaord", child: TablePlace()),
+            child:
+                ProtectedScreen(title: "Lokasi Terdaftar", child: TablePlace()),
           ),
           secondWidget: const AuthScreen(
             title: 'Register Screen',
-            child: Text("Null"),
+            child: LoginScreen(),
           ),
         );
       },
     ),
     GetPage(
-      name: '/test1',
+      name: '/register-place',
       page: () {
         return CustomRoutes(
           widget: DashboardScreen(
-            child: ProtectedScreen(title: "Dashbaord", child: RegisterPlace()),
+            child: ProtectedScreen(
+              title: "Pendaftaran Tempat",
+              child: RegisterPlace(),
+            ),
           ),
           secondWidget: const AuthScreen(
             title: 'Register Screen',
-            child: Text("Null"),
+            child: LoginScreen(),
           ),
         );
       },

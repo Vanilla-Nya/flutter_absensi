@@ -20,24 +20,28 @@ class CustomDataTable extends StatelessWidget {
             ? label.toUpperCase()
             : label.capitalize!))
         .toList();
-
     return Flexible(
       flex: 1,
-      child: DataTable(
-        sortColumnIndex: 0,
-        sortAscending: true,
-        columns: listtitle.map((title) => DataColumn(label: title)).toList(),
-        rows: datalabel.map((e) {
-          return DataRow(
-            cells: List.generate(
-              title.length,
-              (index) => DataCell(
-                Text(e[title[index]]),
-                onTap: ontap,
-              ),
-            ).toList(),
-          );
-        }).toList(),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: DataTable(
+          sortColumnIndex: 0,
+          sortAscending: true,
+          columns: listtitle.map((title) => DataColumn(label: title)).toList(),
+          rows: datalabel.map((e) {
+            return DataRow(
+              cells: List.generate(
+                title.length,
+                (index) {
+                  return DataCell(
+                    Text(e[title[index]] ?? ""),
+                    onTap: ontap,
+                  );
+                },
+              ).toList(),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

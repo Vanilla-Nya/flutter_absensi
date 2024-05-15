@@ -31,7 +31,8 @@ class SigninSignout extends StatelessWidget {
               Flexible(
                 child: CustomFilledButton(
                   label: "Check Out",
-                  onPressed: DateTime.now().hour > 11
+                  onPressed: DateTime.now().hour > 11 &&
+                          DateTime.now().hour < 16
                       ? () => _controller.handleTimechange("Check Out", context)
                       : null,
                 ),
@@ -40,7 +41,11 @@ class SigninSignout extends StatelessWidget {
           ),
           Flexible(
             child: CustomFilledButton(
-                label: "Lain-Nya", onPressed: () => showAlasan(context)),
+              label: "Lain-Nya",
+              onPressed: DateTime.now().hour > 6 && DateTime.now().hour < 16
+                  ? () => showAlasan(context)
+                  : null,
+            ),
           ),
           AnimatedCrossFade(
               firstChild: mobileScreen(),

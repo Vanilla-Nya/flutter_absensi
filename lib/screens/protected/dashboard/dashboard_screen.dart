@@ -80,7 +80,7 @@ class DrawerMenu extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.dashboard_rounded),
-              title: const Text("Dashboard"),
+              title: const Text("Absensi"),
               onTap: () {
                 Get.toNamed("/");
               },
@@ -89,16 +89,22 @@ class DrawerMenu extends StatelessWidget {
               space: 15.0,
             ),
             ExpansionTile(
-              leading: const Icon(Icons.people_rounded),
-              title: const Text('Pasien'),
+              leading: const Icon(Icons.location_pin),
+              title: const Text('Lokasi'),
               childrenPadding: const EdgeInsets.symmetric(horizontal: 10.0),
               children: [
                 ListTile(
-                  leading: const Icon(Icons.leaderboard_rounded),
-                  title: const Text("Data Pasien"),
+                  leading: const Icon(Icons.location_city_rounded),
+                  title: const Text("Lokasi Terdaftar"),
                   onTap: () {
-                    print("Data Pasien");
-                    Get.toNamed("/test");
+                    Get.toNamed("/registered-location");
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.app_registration_rounded),
+                  title: const Text("Pendaftaran Tempat"),
+                  onTap: () {
+                    Get.toNamed("/register-place");
                   },
                 ),
               ],

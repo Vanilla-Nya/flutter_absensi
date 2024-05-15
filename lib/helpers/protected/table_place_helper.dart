@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TablePlaceHelper extends GetxController {
@@ -11,6 +12,37 @@ class TablePlaceHelper extends GetxController {
     "LongitudeStart": "",
     "LongitudeEnd": "",
   }.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      getData();
+    });
+  }
+
+  Future getData() async {
+    final locationCollection = db.collection("Place");
+    final locationQuery = locationCollection
+        .where("workplace", isEqualTo: "Sumber Wringin")
+        .get();
+    await locationQuery.then((locations) {
+      for (var location in locations.docs) {
+        for (var locationPlace in location.data()["place"]) {
+          tableContent.value = [
+            ...tableContent,
+            {
+              "ID": locationPlace["ID"],
+              "Latitude Start": locationPlace["LatitudeStart"],
+              "Latitude End": locationPlace["LatitudeEnd"],
+              "Longitude Start": locationPlace["LongitudeStart"],
+              "Longitude End": locationPlace["LongitudeEnd"],
+            }
+          ];
+        }
+      }
+    });
+  }
 
   handleAddNewtableContent(String name, dynamic value) {
     addNewTableContentData[name] = value;
