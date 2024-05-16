@@ -27,15 +27,21 @@ class CustomDataTable extends StatelessWidget {
         child: DataTable(
           sortColumnIndex: 0,
           sortAscending: true,
+          showCheckboxColumn: false,
           columns: listtitle.map((title) => DataColumn(label: title)).toList(),
           rows: datalabel.map((e) {
             return DataRow(
+              onSelectChanged: (bool? selected) {
+                if (selected! && ontap != null) {
+                  print(true);
+                  ontap!();
+                }
+              },
               cells: List.generate(
                 title.length,
                 (index) {
                   return DataCell(
                     Text(e[title[index]] ?? ""),
-                    onTap: ontap,
                   );
                 },
               ).toList(),

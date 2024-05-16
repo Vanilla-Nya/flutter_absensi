@@ -22,6 +22,7 @@ class TablePlaceHelper extends GetxController {
   }
 
   Future getData() async {
+    tableContent.value = [];
     final locationCollection = db.collection("Place");
     final locationQuery = locationCollection
         .where("workplace", isEqualTo: "Sumber Wringin")

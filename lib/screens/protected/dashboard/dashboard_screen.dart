@@ -4,24 +4,25 @@ import 'package:flutter_absensi/widget/custom_divider/custom_divider.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
-class DashboardScreen extends StatelessWidget {
-  DashboardScreen({super.key, required this.child});
+class DashboardScreen extends GetView<MyDrawerController> {
+  const DashboardScreen({super.key, required this.child});
   final Widget child;
-  final MyDrawerController _myDrawer = Get.put(MyDrawerController());
 
   @override
   Widget build(BuildContext context) {
-    return ZoomDrawer(
-      controller: _myDrawer.zoomDrawerController,
-      borderRadius: 24.0,
-      showShadow: true,
-      angle: -12.0,
-      style: DrawerStyle.defaultStyle,
-      drawerShadowsBackgroundColor: Colors.grey[300]!,
-      slideWidth: 300,
-      menuScreen: const DrawerMenu(),
-      mainScreen: child,
-    );
+    return GetBuilder<MyDrawerController>(builder: (_) {
+      return ZoomDrawer(
+        controller: _.zoomDrawerController,
+        borderRadius: 24.0,
+        showShadow: true,
+        angle: -12.0,
+        style: DrawerStyle.defaultStyle,
+        drawerShadowsBackgroundColor: Colors.grey[300]!,
+        slideWidth: 300,
+        menuScreen: const DrawerMenu(),
+        mainScreen: child,
+      );
+    });
   }
 }
 

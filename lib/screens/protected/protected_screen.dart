@@ -21,7 +21,7 @@ class ProtectedScreen extends StatelessWidget {
       appBar: CustomAppbar(
         title: title,
         leading: IconButton(
-          onPressed: () => _myDrawer.toggleDrawer,
+          onPressed: () => _myDrawer.toggleDrawer(),
           icon: const Icon(Icons.menu),
         ),
         actions: [
