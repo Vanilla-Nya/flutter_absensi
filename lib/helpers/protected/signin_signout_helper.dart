@@ -44,6 +44,8 @@ class SigninSignOutHelper extends GetxController {
     print(value.value == 1 ? "Ijin" : "Sakit");
   }
 
+  final String currentName = cache.read("user")["role"];
+
   handleAlasan(value) {
     valueAlasan.value = value;
   }
