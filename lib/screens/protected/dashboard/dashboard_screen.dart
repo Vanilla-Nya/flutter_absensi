@@ -89,6 +89,27 @@ class DrawerMenu extends StatelessWidget {
               space: 15.0,
             ),
             ExpansionTile(
+              leading: const Icon(Icons.people_alt_rounded),
+              title: const Text("User"),
+              childrenPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.person),
+                  title: const Text("Daftar User"),
+                  onTap: () {
+                    Get.toNamed("/registered-User");
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.person_add),
+                  title: const Text("Pendaftaran User"),
+                  onTap: () {
+                    Get.toNamed("/register-user");
+                  },
+                ),
+              ],
+            ),
+            ExpansionTile(
               leading: const Icon(Icons.location_pin),
               title: const Text('Lokasi'),
               childrenPadding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -108,7 +129,7 @@ class DrawerMenu extends StatelessWidget {
                   },
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

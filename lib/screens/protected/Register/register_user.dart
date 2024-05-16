@@ -18,31 +18,39 @@ class RegisterUser extends StatelessWidget {
         children: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            CustomTextFormField(
-              label: "Email",
-              verification: true,
-              keyboardType: TextInputType.emailAddress,
-              onSave: (value) =>
-                  tableUserHelper.handleAddNewtableContent("Email", value),
+            Row(
+              children: [
+                CustomTextFormField(
+                  label: "Email",
+                  verification: true,
+                  keyboardType: TextInputType.emailAddress,
+                  onSave: (value) =>
+                      tableUserHelper.handleAddNewtableContent("Email", value),
+                ),
+                CustomTextFormField(
+                  label: "Password",
+                  verification: true,
+                  onSave: (value) => tableUserHelper.handleAddNewtableContent(
+                      "Password", value),
+                ),
+              ],
             ),
-            CustomTextFormField(
-              label: "Password",
-              verification: true,
-              onSave: (value) =>
-                  tableUserHelper.handleAddNewtableContent("Password", value),
-            ),
-            CustomTextFormField(
-              label: "Nama",
-              verification: true,
-              onSave: (value) =>
-                  tableUserHelper.handleAddNewtableContent("Nama", value),
-            ),
-            CustomTextFormField(
-              label: "No.Telp",
-              verification: true,
-              keyboardType: TextInputType.number,
-              onSave: (value) =>
-                  tableUserHelper.handleAddNewtableContent("No.Telp", value),
+            Row(
+              children: [
+                CustomTextFormField(
+                  label: "Nama",
+                  verification: true,
+                  onSave: (value) =>
+                      tableUserHelper.handleAddNewtableContent("Nama", value),
+                ),
+                CustomTextFormField(
+                  label: "No.Telp",
+                  verification: true,
+                  keyboardType: TextInputType.number,
+                  onSave: (value) => tableUserHelper.handleAddNewtableContent(
+                      "No.Telp", value),
+                ),
+              ],
             ),
             CustomFilledButton(
               label: "Submit",
