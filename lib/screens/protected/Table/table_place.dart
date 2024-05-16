@@ -11,57 +11,62 @@ class TablePlace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Obx(
-          () => Center(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                tablePlaceHelper.tableContent.isEmpty
-                    ? const CustomDataTable(
-                        title: [
-                          "ID",
-                          "Latitude Start",
-                          "Latitude End",
-                          "Longitude Start",
-                          "Longitude End",
-                        ],
-                        datalabel: [
-                          {
-                            "ID": "",
-                            "LatitudeStart": "",
-                            "LatitudeEnd": "",
-                            "LongitudeStart": "",
-                            "LongitudeEnd": "",
-                          }
-                        ],
-                      )
-                    : CustomDataTable(
-                        title: tablePlaceHelper.tableContent[0].keys.toList(),
-                        datalabel: tablePlaceHelper.tableContent,
-                        ontap: () => showBottomSheet(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    CustomTextFormField(
-                                      label: ":D",
-                                      verification: true,
+    return SingleChildScrollView(
+      child: SizedBox(
+        child: Column(
+          children: [
+            Obx(
+              () => Center(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    tablePlaceHelper.tableContent.isEmpty
+                        ? const CustomDataTable(
+                            title: [
+                              "ID",
+                              "Latitude Start",
+                              "Latitude End",
+                              "Longitude Start",
+                              "Longitude End",
+                            ],
+                            datalabel: [
+                              {
+                                "ID": "",
+                                "LatitudeStart": "",
+                                "LatitudeEnd": "",
+                                "LongitudeStart": "",
+                                "LongitudeEnd": "",
+                              }
+                            ],
+                          )
+                        : CustomDataTable(
+                            title:
+                                tablePlaceHelper.tableContent[0].keys.toList(),
+                            datalabel: tablePlaceHelper.tableContent,
+                            ontap: () => showBottomSheet(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        CustomTextFormField(
+                                          label: ":D",
+                                          verification: true,
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              );
-                            }),
-                      ),
-              ],
+                                  );
+                                }),
+                          ),
+                  ],
+                ),
+              ),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
