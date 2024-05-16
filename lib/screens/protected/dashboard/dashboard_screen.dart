@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_absensi/helpers/global/globals.dart';
 import 'package:flutter_absensi/screens/protected/protected_screen.dart';
 import 'package:flutter_absensi/widget/custom_divider/custom_divider.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -19,7 +20,7 @@ class DashboardScreen extends GetView<MyDrawerController> {
         style: DrawerStyle.defaultStyle,
         drawerShadowsBackgroundColor: Colors.grey[300]!,
         slideWidth: 300,
-        menuScreen: const DrawerMenu(),
+        menuScreen: DrawerMenu(),
         mainScreen: child,
       );
     });
@@ -40,9 +41,11 @@ class MainScreen extends StatelessWidget {
 }
 
 class DrawerMenu extends StatelessWidget {
-  const DrawerMenu({
+  DrawerMenu({
     super.key,
   });
+
+  final String chacheRole = cache.read("user")["role"];
 
   @override
   Widget build(BuildContext context) {
@@ -89,48 +92,50 @@ class DrawerMenu extends StatelessWidget {
             const CustomDivider(
               space: 15.0,
             ),
-            ExpansionTile(
-              leading: const Icon(Icons.people_alt_rounded),
-              title: const Text("User"),
-              childrenPadding: const EdgeInsets.symmetric(horizontal: 10.0),
-              children: [
-                ListTile(
-                  leading: const Icon(Icons.person),
-                  title: const Text("Daftar User"),
-                  onTap: () {
-                    Get.toNamed("/registered-User");
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.person_add),
-                  title: const Text("Pendaftaran User"),
-                  onTap: () {
-                    Get.toNamed("/register-user");
-                  },
-                ),
-              ],
-            ),
-            ExpansionTile(
-              leading: const Icon(Icons.location_pin),
-              title: const Text('Lokasi'),
-              childrenPadding: const EdgeInsets.symmetric(horizontal: 10.0),
-              children: [
-                ListTile(
-                  leading: const Icon(Icons.location_city_rounded),
-                  title: const Text("Lokasi Terdaftar"),
-                  onTap: () {
-                    Get.toNamed("/registered-location");
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.app_registration_rounded),
-                  title: const Text("Pendaftaran Tempat"),
-                  onTap: () {
-                    Get.toNamed("/register-place");
-                  },
-                ),
-              ],
-            ),
+            if (cache.read("user")["role"] == "admin")
+              ExpansionTile(
+                leading: const Icon(Icons.people_alt_rounded),
+                title: const Text("User"),
+                childrenPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.person),
+                    title: const Text("Daftar User"),
+                    onTap: () {
+                      Get.toNamed("/registered-User");
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.person_add),
+                    title: const Text("Pendaftaran User"),
+                    onTap: () {
+                      Get.toNamed("/register-user");
+                    },
+                  ),
+                ],
+              ),
+            if (cache.read("user")["role"] == "admin")
+              ExpansionTile(
+                leading: const Icon(Icons.location_pin),
+                title: const Text('Lokasi'),
+                childrenPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.location_city_rounded),
+                    title: const Text("Lokasi Terdaftar"),
+                    onTap: () {
+                      Get.toNamed("/registered-location");
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.app_registration_rounded),
+                    title: const Text("Pendaftaran Tempat"),
+                    onTap: () {
+                      Get.toNamed("/register-place");
+                    },
+                  ),
+                ],
+              ),
           ],
         ),
       ),
