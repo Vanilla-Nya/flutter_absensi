@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_absensi/helpers/auth/auth_helper.dart';
-import 'package:flutter_absensi/helpers/global/globals.dart';
 import 'package:flutter_absensi/screens/auth/auth_screen.dart';
 import 'package:flutter_absensi/screens/auth/login.dart';
 import 'package:flutter_absensi/screens/protected/Register/register_place.dart';
