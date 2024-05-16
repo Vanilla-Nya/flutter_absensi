@@ -3,7 +3,9 @@ import 'package:flutter_absensi/helpers/auth/auth_helper.dart';
 import 'package:flutter_absensi/screens/auth/auth_screen.dart';
 import 'package:flutter_absensi/screens/auth/login.dart';
 import 'package:flutter_absensi/screens/protected/Register/register_place.dart';
+import 'package:flutter_absensi/screens/protected/Register/register_user.dart';
 import 'package:flutter_absensi/screens/protected/Table/table_place.dart';
+import 'package:flutter_absensi/screens/protected/Table/table_user.dart';
 import 'package:flutter_absensi/screens/protected/dashboard/dashboard_screen.dart';
 import 'package:flutter_absensi/screens/protected/protected_screen.dart';
 import 'package:flutter_absensi/screens/protected/signin_signout/signin_signout.dart';
@@ -19,7 +21,7 @@ class Routes {
           return CustomRoutes(
             widget: DashboardScreen(
               child: ProtectedScreen(
-                title: "Dashboard",
+                title: "Absensi",
                 child: SigninSignout(),
               ),
             ),
@@ -30,11 +32,31 @@ class Routes {
           );
         }),
     GetPage(
-      name: '/register',
+      name: '/registered-User',
       page: () {
         return CustomRoutes(
           widget: DashboardScreen(
-            child: ProtectedScreen(title: "Dashboard", child: SigninSignout()),
+            child: ProtectedScreen(
+              title: "User",
+              child: TableUser(),
+            ),
+          ),
+          secondWidget: const AuthScreen(
+            title: 'Register Screen',
+            child: LoginScreen(),
+          ),
+        );
+      },
+    ),
+    GetPage(
+      name: '/register-user',
+      page: () {
+        return CustomRoutes(
+          widget: DashboardScreen(
+            child: ProtectedScreen(
+              title: "Pendaftaran User",
+              child: RegisterUser(),
+            ),
           ),
           secondWidget: const AuthScreen(
             title: 'Register Screen',
@@ -48,8 +70,10 @@ class Routes {
       page: () {
         return CustomRoutes(
           widget: DashboardScreen(
-            child:
-                ProtectedScreen(title: "Lokasi Terdaftar", child: TablePlace()),
+            child: ProtectedScreen(
+              title: "Lokasi Terdaftar",
+              child: TablePlace(),
+            ),
           ),
           secondWidget: const AuthScreen(
             title: 'Register Screen',
