@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_absensi/helpers/global/globals.dart';
 import 'package:flutter_absensi/models/user/user_model.dart';
 import 'package:get/get.dart';
@@ -7,20 +8,26 @@ class HistoryHelper extends GetxController {
   final RxList userDataCheck = [].obs;
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _getData();
+    });
+  }
+
+  void _getData() async {
     final timeCollection = db.collection("TimeStamp");
-    final dateNow = DateTime.now();
-    final year = dateNow.year;
-    var month = dateNow.month;
+    final date = DateTime.now();
+    final year = date.year;
+    var month = date.month;
     const day = "01";
+    final dateNow = DateTime.parse(
+        "$year-${month.toString().length == 1 ? "0$month" : month}-$day");
+    final dateThen =
+        DateTime.parse("$year-${month++ <= 9 ? "0$month" : month}-$day");
+
     switch (cacheRole) {
       case "admin":
-        final dateNow = DateTime.parse(
-            "$year-${month.toString().length == 1 ? "0$month" : month}-$day");
-        final dateThen =
-            DateTime.parse("$year-${month++ <= 9 ? "0$month" : month}-$day");
-
         final queryForAdmin = timeCollection.get();
         await queryForAdmin.then((timestamps) {
           for (var timestamp in timestamps.docs) {
@@ -38,6 +45,9 @@ class HistoryHelper extends GetxController {
         });
         break;
       case "user":
+        final cacheUsername = cache.read("user")["name"];
+        final queryForUser =
+            timeCollection.where("name", isEqualTo: cacheUsername).get();
         break;
       default:
     }

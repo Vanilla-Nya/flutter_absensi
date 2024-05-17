@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
           MediaQuery.of(context).platformBrightness == Brightness.dark;
 
       return GetMaterialApp(
-        title: 'Selamat Datang di Praktek Dokter App',
+        title: 'Selamat Datang di Absensi Sumber Wringin',
         scrollBehavior: CustomScrollBehavior(),
         theme: ThemeData(
           useMaterial3: true,

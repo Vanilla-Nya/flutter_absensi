@@ -33,6 +33,17 @@ class SigninSignOutHelper extends GetxController {
     },
   }.obs;
 
+  @override
+  void onInit() async {
+    super.onInit();
+    Geolocator.requestPermission().then((value) {
+      if (value == LocationPermission.denied ||
+          value == LocationPermission.deniedForever) {
+        Get.snackbar("Lokasi Tidak Di Izinkan !", "");
+      }
+    });
+  }
+
   final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore db = FirebaseFirestore.instance;
 
