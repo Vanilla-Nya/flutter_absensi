@@ -68,6 +68,7 @@ class SigninSignOutHelper extends GetxController {
       if (value.docs.isEmpty) {
         db.collection("TimeStamp").doc().set({
           "name": currentData["name"],
+          "lastEdit": Timestamp.now(),
           "timestamp": [
             currentData["timestamp"],
           ]
@@ -75,6 +76,7 @@ class SigninSignOutHelper extends GetxController {
       } else {
         for (var element in value.docs) {
           db.collection("TimeStamp").doc(element.id).update({
+            "lastEdit": Timestamp.now(),
             "timestamp": FieldValue.arrayUnion(
               [currentData["timestamp"]],
             )
