@@ -57,8 +57,12 @@ class HistoryHelper extends GetxController {
     // Else Get Data Where Name == Name In Login and this Year
     else {
       query = timeCollection
-          .where("name", isEqualTo: cacheUsername)
-          .where("year", isEqualTo: year.toString())
+          .where(
+            Filter.and(
+              Filter("name", isEqualTo: cacheUsername),
+              Filter("year", isEqualTo: year.toString()),
+            ),
+          )
           .get();
     }
 
