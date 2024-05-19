@@ -4,7 +4,6 @@ import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
 import 'package:flutter_absensi/widget/custom_card/custom_card.dart';
 import 'package:flutter_absensi/widget/custom_textfromfield/custom_textformfield.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class RegisterUser extends StatelessWidget {
   RegisterUser({super.key});
