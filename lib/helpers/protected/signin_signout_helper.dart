@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_absensi/helpers/global/globals.dart';
 import 'package:flutter_absensi/models/map/geofencing.dart';
@@ -21,6 +20,7 @@ class SigninSignOutHelper extends GetxController {
   final isCheckIn = false.obs;
   final isCheckOut = false.obs;
   final labelCheck = "Check In".obs;
+  final geoFencingList = [].obs;
   final RxMap<String, dynamic> currentData = {
     "name": "",
     "timestamp": {
@@ -36,16 +36,60 @@ class SigninSignOutHelper extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    Geolocator.requestPermission().then((value) {
-      if (value == LocationPermission.denied ||
-          value == LocationPermission.deniedForever) {
-        Get.snackbar("Lokasi Tidak Di Izinkan !", "");
-      }
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Geolocator.requestPermission().then((value) {
+        if (value == LocationPermission.denied ||
+            value == LocationPermission.deniedForever) {
+          Get.snackbar("Lokasi Tidak Di Izinkan !", "");
+        }
+      });
+      _getData();
     });
   }
 
-  final FirebaseAuth auth = FirebaseAuth.instance;
-  final FirebaseFirestore db = FirebaseFirestore.instance;
+  void _getData() async {
+    final collection = db.collection("TimeStamp");
+    final query = collection
+        .where("name", isEqualTo: cache.read("user")["name"])
+        .limit(1)
+        .get();
+    if (!isCheckIn.value ||
+        !isCheckOut.value ||
+        !isCheckIn.value && !isCheckOut.value) {
+      await query.then((datas) {
+        for (var data in datas.docs) {
+          for (var timestamp in data["timestamp"]) {
+            final date = DateFormat("yyyy-MM-dd")
+                .format(DateTime.parse(timestamp["DateTime"]));
+            final dateNow = DateFormat("yyyy-MM-dd").format(DateTime.now());
+            if (date == dateNow && timestamp["type"] == "Check In") {
+              isCheckIn.value = true;
+            } else if (date == dateNow && timestamp["type"] == "Check Out") {
+              isCheckOut.value = true;
+            }
+          }
+        }
+      });
+    }
+
+    final collectionGeo = db.collection("Place");
+    final queryGeo = collectionGeo
+        .where("workplace", isEqualTo: "Sumber Wringin")
+        .limit(1)
+        .get();
+    await queryGeo.then((places) {
+      for (var place in places.docs) {
+        for (var geoFence in place["place"]) {
+          final geoFencing = SquareGeoFencing.fromJson(geoFence);
+          geoFencingList.add(geoFencing);
+        }
+      }
+    });
+    GeoFencing.square(
+            listSquareGeoFencing: <SquareGeoFencing>[...geoFencingList])
+        .listGeoFencing()
+        .then((value) => print(value));
+  }
 
   handleChange(selected, index) {
     status.value = index == 1 ? "Ijin" : "Sakit";
@@ -89,14 +133,11 @@ class SigninSignOutHelper extends GetxController {
   handleTimechange(label, context) async {
     final String currentName = cache.read("user")["name"];
     if (label == "Check In") {
-      isCheckIn.value = !isCheckIn.value;
       datetimeIN.value =
-          DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()).toString();
-      labelCheck.value = "Check Out";
+          DateFormat("yyyy-MM-dd hh:mm:ss").format(DateTime.now()).toString();
     } else {
-      isCheckOut.value = !isCheckOut.value;
       datetimeOut.value =
-          DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now()).toString();
+          DateFormat("yyyy-MM-dd hh:mm:ss").format(DateTime.now()).toString();
     }
     final bool isInside =
         await const GeoFencing.square(listSquareGeoFencing: <SquareGeoFencing>[
@@ -120,76 +161,79 @@ class SigninSignOutHelper extends GetxController {
     currentData["timestamp"]["type"] = labelCheck.value;
     if (!isInside) {
       currentData["timestamp"]["status"] = "Outside Workplace";
-      currentData["timestamp"]["workplaceId"] = "Unkown";
+      currentData["timestamp"]["workplaceId"] = "Unknown";
       currentData["timestamp"]["statusOutside"] = status.value;
       currentData["timestamp"]["alasan"] = valueAlasan.value;
       Get.snackbar("Outside", "");
-      return showModalBottomSheet(
-        constraints: BoxConstraints(
-          minWidth: MediaQuery.of(context).size.width,
-          minHeight: MediaQuery.of(context).size.height * 0.5,
-          maxHeight: MediaQuery.of(context).size.height * 0.5,
-        ),
-        context: context,
-        builder: (BuildContext context) {
-          return Stack(
-            alignment: Alignment.center,
-            fit: StackFit.expand,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    CustomChoiceChip(
-                      title: 'Alasan',
-                      content: const ["Sakit", "Ijin"],
-                      length: 2,
-                    ),
-                    const Gap(10.0),
-                    Obx(() => value.value == 1
-                        ? CustomTextFormField(
-                            label: "Alasan",
-                            verification: true,
-                            maxlines: 3,
-                            keyboardType: TextInputType.multiline,
-                            onSave: (value) => handleAlasan(value),
-                          )
-                        : const Flexible(child: Text(""))),
-                  ],
-                ),
-              ),
-              Positioned(
-                bottom: 0,
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: CustomFilledButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    handleAddToDatabase();
-                  },
-                  label: "Submit",
-                ),
-              ),
-            ],
-          );
-        },
-      );
+      return widgetOutsideWorkplace(context);
     } else {
       currentData["timestamp"]["status"] = "Inside Workplace";
-      Map getCurrentWorkplace = await const GeoFencing.square(
-          listSquareGeoFencing: <SquareGeoFencing>[
-            SquareGeoFencing(
-              id: "Puskesmas Sumber Wringin",
-              latitudeStart: -7.9791797,
-              latitudeEnd: -7.979752,
-              longitudeStart: 113.9933635,
-              longitudeEnd: 113.9936065,
-            ),
-          ]).listGeoFencing();
-      currentData["timestamp"]["workplaceId"] =
-          getCurrentWorkplace["workplaceId"];
-      handleAddToDatabase();
-      print(position);
+      // List getCurrentWorkplace = await const GeoFencing.square(
+      //     listSquareGeoFencing: <SquareGeoFencing>[
+      //       SquareGeoFencing(
+      //         id: "Puskesmas Sumber Wringin",
+      //         latitudeStart: -7.9791797,
+      //         latitudeEnd: -7.979752,
+      //         longitudeStart: 113.9933635,
+      //         longitudeEnd: 113.9936065,
+      //       ),
+      //     ]).listGeoFencing();
+      // currentData["timestamp"]["workplaceId"] =
+      //     getCurrentWorkplace["workplaceId"];
+      // handleAddToDatabase();
       Get.snackbar("Inside", "");
     }
+  }
+
+  Future<dynamic> widgetOutsideWorkplace(context) {
+    return showModalBottomSheet(
+      constraints: BoxConstraints(
+        minWidth: MediaQuery.of(context).size.width,
+        minHeight: MediaQuery.of(context).size.height * 0.5,
+        maxHeight: MediaQuery.of(context).size.height * 0.5,
+      ),
+      context: context,
+      builder: (BuildContext context) {
+        return Stack(
+          alignment: Alignment.center,
+          fit: StackFit.expand,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  CustomChoiceChip(
+                    title: 'Alasan',
+                    content: const ["Sakit", "Ijin"],
+                    length: 2,
+                  ),
+                  const Gap(10.0),
+                  Obx(() => value.value == 1
+                      ? CustomTextFormField(
+                          label: "Alasan",
+                          verification: true,
+                          maxlines: 3,
+                          keyboardType: TextInputType.multiline,
+                          onSave: (value) => handleAlasan(value),
+                        )
+                      : const Flexible(child: Text(""))),
+                ],
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: CustomFilledButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  handleAddToDatabase();
+                },
+                label: "Submit",
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

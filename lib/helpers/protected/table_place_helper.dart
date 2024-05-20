@@ -82,9 +82,14 @@ class TablePlaceHelper extends GetxController {
               db.collection("Place").doc(element.id).update({
                 "place": FieldValue.arrayUnion([addNewTableContentData])
               });
+              Get.snackbar(
+                "Berhasil Menyimpan",
+                "${addNewTableContentData["ID"]} Telah Ditambahkan",
+              );
             }
           }
         }
+        Get.toNamed("/registered-location");
       }
     });
   }

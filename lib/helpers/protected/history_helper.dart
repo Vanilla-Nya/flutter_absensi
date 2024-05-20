@@ -29,20 +29,6 @@ class HistoryHelper extends GetxController {
     // Get Year
     final year = date.year;
 
-    // Get Month
-    var month = date.month;
-
-    // First Day
-    const day = "01";
-
-    // Get This Month From Day One
-    final dateNow = DateTime.parse(
-        "$year-${month.toString().length == 1 ? "0$month" : month}-$day");
-
-    // To Last Day of The Month
-    final dateThen =
-        DateTime.parse("$year-${month++ <= 9 ? "0$month" : month}-$day");
-
     // Collection
     final timeCollection = db.collection("TimeStamp");
 
@@ -61,6 +47,7 @@ class HistoryHelper extends GetxController {
             Filter.and(
               Filter("name", isEqualTo: cacheUsername),
               Filter("year", isEqualTo: year.toString()),
+              Filter("month", isEqualTo: date.month),
             ),
           )
           .get();
@@ -74,9 +61,8 @@ class HistoryHelper extends GetxController {
         for (var timestampData in timestamp["timestamp"]) {
           // Change Type to DateTime from String
           final date = DateTime.parse(timestampData["DateTime"]);
-          print(date.month);
           // If DateNow <= Date < DateThen
-          if (date.isAfter(dateNow) && date.isBefore(dateThen)) {
+          if (date.month == DateTime.now().month) {
             // Adding In The UserDataCheck With User History Model Configuratuion
             userDataCheck.add(UserHistoryModel.fromJson(
               timestampData,

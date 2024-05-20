@@ -14,6 +14,15 @@ class SquareGeoFencing {
   final double latitudeEnd;
   final double longitudeStart;
   final double longitudeEnd;
+
+  factory SquareGeoFencing.fromJson(Map<String, dynamic> geoFencingJSON) =>
+      SquareGeoFencing(
+        id: geoFencingJSON["ID"],
+        latitudeStart: double.parse(geoFencingJSON["LatitudeStart"]),
+        latitudeEnd: double.parse(geoFencingJSON["LatitudeEnd"]),
+        longitudeStart: double.parse(geoFencingJSON["LongitudeStart"]),
+        longitudeEnd: double.parse(geoFencingJSON["LongitudeEnd"]),
+      );
 }
 
 class GeoFencing {
@@ -36,17 +45,19 @@ class GeoFencing {
     return false;
   }
 
-  Future<Map> listGeoFencing() async {
+  Future<List> listGeoFencing() async {
+    List listGeo = [];
     for (var geoFencing in listSquareGeoFencing!) {
-      return {
+      Map geoFence = {
         "workplaceId": geoFencing.id,
         "latitudeStart": geoFencing.latitudeStart,
         "latitudeEnd": geoFencing.latitudeEnd,
         "longitudeStart": geoFencing.longitudeStart,
         "longitudeEnd": geoFencing.longitudeEnd,
       };
+      listGeo.add(geoFence);
     }
-    return {};
+    return listGeo;
   }
 }
 

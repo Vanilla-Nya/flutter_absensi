@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter_absensi/helpers/protected/history_helper.dart';
 import 'package:flutter_absensi/helpers/protected/signin_signout_helper.dart';
 import 'package:flutter_absensi/widget/custom_button/custom_filled_button.dart';
 import 'package:flutter_absensi/widget/custom_card/custom_card.dart';
@@ -10,6 +11,7 @@ import 'package:get/get.dart';
 class SigninSignout extends StatelessWidget {
   SigninSignout({super.key});
   final SigninSignOutHelper _controller = Get.put(SigninSignOutHelper());
+  // final HistoryHelper _ = Get.put(HistoryHelper());
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,7 +25,7 @@ class SigninSignout extends StatelessWidget {
               Flexible(
                 child: CustomFilledButton(
                   label: "Check In",
-                  onPressed: DateTime.now().hour < 8
+                  onPressed: !_controller.isCheckIn.value
                       ? () => _controller.handleTimechange("Check In", context)
                       : null,
                 ),
@@ -31,8 +33,7 @@ class SigninSignout extends StatelessWidget {
               Flexible(
                 child: CustomFilledButton(
                   label: "Check Out",
-                  onPressed: DateTime.now().hour > 11 &&
-                          DateTime.now().hour < 16
+                  onPressed: !_controller.isCheckOut.value
                       ? () => _controller.handleTimechange("Check Out", context)
                       : null,
                 ),
@@ -42,9 +43,10 @@ class SigninSignout extends StatelessWidget {
           Flexible(
             child: CustomFilledButton(
               label: "Lain-Nya",
-              onPressed: DateTime.now().hour > 6 && DateTime.now().hour < 16
-                  ? () => showAlasan(context)
-                  : null,
+              onPressed:
+                  !_controller.isCheckIn.value && !_controller.isCheckOut.value
+                      ? () => showAlasan(context)
+                      : null,
             ),
           ),
           AnimatedCrossFade(
