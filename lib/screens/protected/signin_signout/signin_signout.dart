@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 
 class SigninSignout extends StatelessWidget {
   SigninSignout({super.key});
+
   final SigninSignOutHelper _controller = Get.put(SigninSignOutHelper());
   // final HistoryHelper _ = Get.put(HistoryHelper());
   @override
@@ -229,10 +230,14 @@ class SigninSignout extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  CustomChoiceChip(
-                    title: 'Alasan',
-                    content: const ["Sakit", "Ijin"],
-                    length: 2,
+                  Obx(
+                    () => CustomChoiceChip(
+                      title: 'Alasan',
+                      content: const ["Sakit", "Ijin"],
+                      length: 2,
+                      selected: _controller.value.value,
+                      onSelected: _controller.handleChange(false, 1),
+                    ),
                   ),
                   const Gap(10.0),
                   Obx(() => _controller.value.value == 1

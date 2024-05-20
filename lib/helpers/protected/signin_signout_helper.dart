@@ -202,10 +202,14 @@ class SigninSignOutHelper extends GetxController {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  CustomChoiceChip(
-                    title: 'Alasan',
-                    content: const ["Sakit", "Ijin"],
-                    length: 2,
+                  Obx(
+                    () => CustomChoiceChip(
+                      title: 'Alasan',
+                      content: const ["Sakit", "Ijin"],
+                      length: 2,
+                      selected: value.value,
+                      onSelected: handleChange(false, 1),
+                    ),
                   ),
                   const Gap(10.0),
                   Obx(() => value.value == 1
