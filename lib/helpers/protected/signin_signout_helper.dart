@@ -53,9 +53,10 @@ class SigninSignOutHelper extends GetxController {
         .where("name", isEqualTo: cache.read("user")["name"])
         .limit(1)
         .get();
-    if (!isCheckIn.value ||
-        !isCheckOut.value ||
-        !isCheckIn.value && !isCheckOut.value) {
+    if ((!isCheckIn.value ||
+            !isCheckOut.value ||
+            !isCheckIn.value && !isCheckOut.value) &&
+        cache.read("userIsLogin") == true) {
       await query.then((datas) {
         for (var data in datas.docs) {
           for (var timestamp in data["timestamp"]) {
@@ -71,24 +72,25 @@ class SigninSignOutHelper extends GetxController {
         }
       });
     }
-
-    final collectionGeo = db.collection("Place");
-    final queryGeo = collectionGeo
-        .where("workplace", isEqualTo: "Sumber Wringin")
-        .limit(1)
-        .get();
-    await queryGeo.then((places) {
-      for (var place in places.docs) {
-        for (var geoFence in place["place"]) {
-          final geoFencing = SquareGeoFencing.fromJson(geoFence);
-          geoFencingList.add(geoFencing);
+    if (cache.read("userIsLogin") == true) {
+      final collectionGeo = db.collection("Place");
+      final queryGeo = collectionGeo
+          .where("workplace", isEqualTo: "Sumber Wringin")
+          .limit(1)
+          .get();
+      await queryGeo.then((places) {
+        for (var place in places.docs) {
+          for (var geoFence in place["place"]) {
+            final geoFencing = SquareGeoFencing.fromJson(geoFence);
+            geoFencingList.add(geoFencing);
+          }
         }
-      }
-    });
-    GeoFencing.square(
-            listSquareGeoFencing: <SquareGeoFencing>[...geoFencingList])
-        .listGeoFencing()
-        .then((value) => print(value));
+      });
+      GeoFencing.square(
+              listSquareGeoFencing: <SquareGeoFencing>[...geoFencingList])
+          .listGeoFencing()
+          .then((value) => print(value));
+    }
   }
 
   handleChange(selected, index) {
