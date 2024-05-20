@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_absensi/helpers/protected/signin_signout_helper.dart';
-import 'package:get/get.dart';
 
 class CustomChoiceChip extends StatelessWidget {
-  CustomChoiceChip({
+  const CustomChoiceChip({
     super.key,
     required this.title,
     this.fontsize,
     required this.content,
     required this.length,
-    this.onSelected,
+    this.selected,
+    required this.onSelected,
     this.titlefontzise,
   });
   final String title;
   final double? titlefontzise;
   final List<String> content;
   final int length;
-  final void Function(bool)? onSelected;
-  final SigninSignOutHelper _controller = Get.put(SigninSignOutHelper());
+  final void Function(bool, int) onSelected;
+  final int? selected;
   final double? fontsize;
 
   @override
@@ -32,18 +31,17 @@ class CustomChoiceChip extends StatelessWidget {
           children: List<Widget>.generate(
             length,
             (int index) {
-              return Obx(() => ChoiceChip(
-                    label: Text(
-                      content[index],
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: fontsize,
-                      ),
-                    ),
-                    selected: _controller.value.value == index,
-                    onSelected: (bool selected) =>
-                        _controller.handleChange(selected, index),
-                  ));
+              return ChoiceChip(
+                label: Text(
+                  content[index],
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: fontsize,
+                  ),
+                ),
+                selected: selected == index,
+                onSelected: (bool selected) => onSelected(selected, index),
+              );
             },
           ).toList(),
         ),
