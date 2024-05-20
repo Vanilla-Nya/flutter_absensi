@@ -230,15 +230,18 @@ class SigninSignout extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  Obx(
-                    () => CustomChoiceChip(
-                      title: 'Alasan',
-                      content: const ["Sakit", "Ijin"],
-                      length: 2,
-                      selected: _controller.value.value,
-                      onSelected: _controller.handleChange(false, 1),
-                    ),
-                  ),
+                  const Text("Alasan"),
+                  Obx(() => Row(
+                        children: List.generate(2, (int index) {
+                          final List<String> title = ["Sakit", "Ijin"];
+                          return CustomChoiceChip(
+                            content: title[index],
+                            selected: _controller.value.value == index,
+                            onSelected: (bool selected) =>
+                                _controller.handleChange(selected, index),
+                          );
+                        }),
+                      )),
                   const Gap(10.0),
                   Obx(() => _controller.value.value == 1
                       ? CustomTextFormField(
